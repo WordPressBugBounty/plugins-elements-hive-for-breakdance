@@ -1,0 +1,23 @@
+.eh-orbiting-icons {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 400px;
+  height: 400px
+}
+
+.eh-orbiting-icons .eh-orbiting-icons__center-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ width: 5rem;
+ aspect-ratio: 1;
+}
+.eh-orbiting-icons .eh-orbiting-icons__center-icon > svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  fill: currentColor;
+}

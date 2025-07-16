@@ -2,14 +2,34 @@
 
 namespace ElementsHiveForBreakdance\BuilderTricks;
 
-function enqueue_builder_script()
-{
-    if (!\Breakdance\isRequestFromBuilderIframe()) return;
+add_action('wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_builder_tricks_scripts');
 
-    wp_enqueue_script('elements_hive_builder_tricks_js', ELEMENTS_HIVE_ASSETS_DIR . '/builder/builder-tricks/eh_builder_tricks.js', [], '1.0', true);
+
+function enqueue_builder_tricks_scripts()
+{
+
+    
+    if (!\Breakdance\isRequestFromBuilderIframe()) {
+        return;
+    }
+
+    wp_enqueue_script(
+        'eh-builder-tricks-js', 
+        ELEMENTS_HIVE_ASSETS_DIR . 'builder/builder-tricks/eh_builder_tricks@1.1.0.min.js', 
+        [], 
+        '1.1', 
+        true
+    );
 
 }
 
-add_action('wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_builder_script');
+
+
+
+
+
+
+
+
 
 

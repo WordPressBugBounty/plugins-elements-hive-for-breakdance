@@ -44,7 +44,9 @@ function addActions( $actions ) {
 								canvasClass: 'eh-webgl-fluid__canvas',
 								isApplyToPage: settings?.relative_to == 'page' ? true : false,
 								fluidOptions: fluidOptions,
-								ditheringTextureUrl: '{{getElementsHivePluginUrl()}}extensions/backgrounds/webgl_fluid/assets/images/dithering_texture.png'
+								ditheringTextureUrl: '{{getElementsHivePluginUrl()}}extensions/backgrounds/webgl_fluid/assets/images/dithering_texture.png',
+								injectBelowFxLayers: settings?.inject_below_fxlayers ?? false,
+								fluidPreset: settings?.fluid_preset ?? false
 							}
 							new EhWebglFluid(options)
 						} else {

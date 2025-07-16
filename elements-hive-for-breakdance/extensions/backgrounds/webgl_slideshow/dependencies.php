@@ -54,6 +54,8 @@ function addDependencies( $deps ) {
 
 				function initEhSlideshow() {
 
+					const sectionContainer = containerEl.querySelector('.section-container');
+
 					const settings = {{design.elements_hive.backgrounds.webgl_slideshow|json_encode}} || {};
 
 					if(!settings?.hasOwnProperty('effects') ) {
@@ -63,7 +65,7 @@ function addDependencies( $deps ) {
 
 					const wrapper = document.createElement('div');
 					wrapper.classList.add('eh-webgl-slideshow__wrapper-%%ID%%');
-					containerEl.insertAdjacentElement('afterbegin', wrapper);
+					sectionContainer.insertAdjacentElement('beforebegin', wrapper);
 
 					const canvas = document.createElement('canvas');
 					canvas.classList.add('eh-webgl-slideshow__canvas');
@@ -126,6 +128,8 @@ function addDependencies( $deps ) {
 
 				function init() {
 
+					const sectionContainer = containerEl.querySelector('.section-container');
+
 					if(!settings?.hasOwnProperty('effects') ) {
 						settings.effects = {};
 						settings.effects.effect = 'blend-wave';
@@ -133,7 +137,7 @@ function addDependencies( $deps ) {
 
 					const wrapper = document.createElement('div');
 					wrapper.classList.add('eh-webgl-slideshow__wrapper-%%ID%%');
-					containerEl.insertAdjacentElement('afterbegin', wrapper);
+					sectionContainer.insertAdjacentElement('beforebegin', wrapper);
 
 					const canvas = document.createElement('canvas');
 					canvas.classList.add('eh-webgl-slideshow__canvas');
@@ -198,6 +202,8 @@ function addDependencies( $deps ) {
 
 				function initEhSlideshow() {
 
+					const sectionContainer = containerEl.querySelector('.section-container');
+
 					const settings = {{design.elements_hive.backgrounds.webgl_slideshow|json_encode}} || {};
 
 					if(!settings?.hasOwnProperty('effects') ) {
@@ -207,7 +213,7 @@ function addDependencies( $deps ) {
 
 					const wrapper = document.createElement('div');
 					wrapper.classList.add('eh-webgl-slideshow__wrapper-%%ID%%');
-					containerEl.insertAdjacentElement('afterbegin', wrapper);
+					sectionContainer.insertAdjacentElement('beforebegin', wrapper);
 
 					const canvas = document.createElement('canvas');
 					canvas.classList.add('eh-webgl-slideshow__canvas');

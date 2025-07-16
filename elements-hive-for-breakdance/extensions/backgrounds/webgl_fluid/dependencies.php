@@ -35,7 +35,7 @@ function addDependencies( $deps ) {
 		'frontendCondition' => $conditionWithoutTouch,
 		'builderCondition' => $condition,
 		'scripts' => [
-			ELEMENTS_HIVE_DIR . 'extensions/backgrounds/webgl_fluid/assets/js/eh_webgl_fluid.min.js',
+			ELEMENTS_HIVE_DIR . 'extensions/backgrounds/webgl_fluid/assets/js/eh_webgl_fluid@1.1.0.min.js',
 		],
 	];
 	$deps[] = [
@@ -83,7 +83,9 @@ function addDependencies( $deps ) {
 					canvasClass: 'eh-webgl-fluid__canvas',
 					isApplyToPage: settings?.relative_to == 'page' ? true : false,
 					fluidOptions: fluidOptions,
-					ditheringTextureUrl: '{{getElementsHivePluginUrl()}}extensions/backgrounds/webgl_fluid/assets/images/dithering_texture.png'
+					ditheringTextureUrl: '{{getElementsHivePluginUrl()}}extensions/backgrounds/webgl_fluid/assets/images/dithering_texture.png',
+					injectBelowFxLayers: settings?.inject_below_fxlayers ?? false,
+					fluidPreset: settings?.fluid_preset ?? false
 				}
 
 				new EhWebglFluid(options);
@@ -148,13 +150,15 @@ function addDependencies( $deps ) {
 						canvasClass: 'eh-webgl-fluid__canvas',
 						isApplyToPage: settings?.relative_to == 'page' ? true : false,
 						fluidOptions: fluidOptions,
-						ditheringTextureUrl: '{{getElementsHivePluginUrl()}}extensions/backgrounds/webgl_fluid/assets/images/dithering_texture.png'
+						ditheringTextureUrl: '{{getElementsHivePluginUrl()}}extensions/backgrounds/webgl_fluid/assets/images/dithering_texture.png',
+						injectBelowFxLayers: settings?.inject_below_fxlayers ?? false,
+						fluidPreset: settings?.fluid_preset ?? false
 					}
 
 					new EhWebglFluid(options);
 				}
 
-				const modulePath = '{{getElementsHivePluginUrl()}}extensions/backgrounds/webgl_fluid/assets/js/eh_webgl_fluid.min.js';
+				const modulePath = '{{getElementsHivePluginUrl()}}extensions/backgrounds/webgl_fluid/assets/js/eh_webgl_fluid@1.1.0.min.js';
 
 				await import(modulePath)
 				init()
@@ -210,7 +214,9 @@ function addDependencies( $deps ) {
 						canvasClass: 'eh-webgl-fluid__canvas',
 						isApplyToPage: settings?.relative_to == 'page' ? true : false,
 						fluidOptions: fluidOptions,
-						ditheringTextureUrl: '{{getElementsHivePluginUrl()}}extensions/backgrounds/webgl_fluid/assets/images/dithering_texture.png'
+						ditheringTextureUrl: '{{getElementsHivePluginUrl()}}extensions/backgrounds/webgl_fluid/assets/images/dithering_texture.png',
+						injectBelowFxLayers: settings?.inject_below_fxlayers ?? false,
+						fluidPreset: settings?.fluid_preset ?? false
 					}
 
 					new EhWebglFluid(options);

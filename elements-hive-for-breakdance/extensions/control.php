@@ -19,7 +19,7 @@ function addControls( $controls, $element ) {
 	/**
 	 * Sections Extensions
 	 */
-	if ( 'EssentialElements\\Section' === $slug ) {
+	if ( 'EssentialElements\\Section' === $slug || 'ElementsHiveForBreakdancePro\\EhSection' === $slug ) {
 
 		$controls['designSections'][] = controlSection(
 			'elements_hive',
@@ -28,7 +28,7 @@ function addControls( $controls, $element ) {
 				\ElementsHiveForBreakdance\Extensions\Backgrounds\controls(),
 				\ElementsHiveForBreakdance\Extensions\MouseCursors\controls(),
 				\ElementsHiveForBreakdance\Extensions\Backlight\controls(),
-
+				\ElementsHiveForBreakdance\Extensions\EdgeMask\controls(),
 			],
 			[ 'isExternal' => true ]
 		);
@@ -38,7 +38,7 @@ function addControls( $controls, $element ) {
 			'Elements Hive',
 			[
 				\ElementsHiveForBreakdance\Extensions\Backlight\controls(),
-
+				\ElementsHiveForBreakdance\Extensions\EdgeMask\controls(),
 			],
 			[ 'isExternal' => true ]
 		);

@@ -22,6 +22,9 @@ function setupElementsHiveDesignLibraryProviders($providers) {
             "url" => 'https://ixb.elementshive.com',
             "type" => "complete_site",
             "fullSiteImportEnabled" => true,
+            "meta" => [
+                'thumbnailUrl' => ELEMENTS_HIVE_ASSETS_DIR . 'images/design-library/ixb-thumbnail.webp'
+            ]
         ],
     ];
 

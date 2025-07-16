@@ -1,0 +1,34 @@
+%%SELECTOR%% {
+    --radius: {{design.circle_path.radius.number}};
+    --duration: {{design.animation.duration.number}};
+    --direction:{{design.animation.direction}}; 
+  --top: {{design.position.position.y}};
+  --left: {{design.position.position.x}};
+  --stroke-width: {{design.circle_path.stroke_width}};
+}
+
+%%SELECTOR%% .eh-orbiting-icons-item__icon-wrapper {
+  width: {{design.icons.size.style}};
+  color: {{design.icons.color}};
+  background-color: {{design.icons.background}};
+  {{ macros.borders(design.icons.borders) }}
+  {{ macros.spacing_padding_all(design.icons.padding) }}
+}
+
+%%SELECTOR%% .eh-orbiting-icons-item__circle-path circle {
+  stroke: {{design.circle_path.stroke_color}};
+}
+
+{% for item in content.content.icons %}
+  %%SELECTOR%% .eh-orbiting-icons-item__icon-wrapper:nth-child({{loop.index + 1}}) {
+      --angle: (360 / {{loop.length}}) * {{loop.index0}};
+      {% if item.style_overrides == true %}
+          width: {{item.size.style}};
+          color: {{item.color}};
+    	  background-color: {{item.background}};
+   		  {{ macros.borders(item.borders) }}
+     	  {{ macros.spacing_padding_all(item.padding) }}
+   	  {% endif %}
+  }
+{% endfor %}
+  		

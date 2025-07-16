@@ -1,0 +1,67 @@
+.eh-orbiting-icons-item {
+  position: absolute;
+  width: calc( ( var(--radius, 170) + var(--stroke-width, 1) ) * 2px );
+  height: calc( ( var(--radius, 170) + var(--stroke-width, 1) ) * 2px );
+  top: calc(var(--top, 50) * 1%);
+  left: calc(var(--left, 50) * 1%);
+  translate: calc(var(--left, 50) *-1%) calc(var(--top, 50) * -1%)
+}
+
+.eh-orbiting-icons-item .eh-orbiting-icons-item__inner {
+	position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.eh-orbiting-icons-item .eh-orbiting-icons-item__icon-wrapper  {
+  	position: absolute;
+  	display: flex;
+  align-items: center;
+  justify-content: center;
+    width: 2.5rem;
+   aspect-ratio: 1;
+  animation: eh-orbiting-icons-animation calc(var(--duration, 10) * 1s) linear infinite;
+  animation-direction: var(--direction, normal);
+  transform-origin: 50% calc(50% + var(--radius, 170) * 1px);
+} 
+
+.eh-orbiting-icons-item.eh-orbit-animation-reversed .eh-orbiting-icons-item__icon-wrapper {
+ animation-direction: reverse;
+}
+.eh-orbiting-icons-item .eh-orbiting-icons-item__icon-wrapper > svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  fill: currentColor;
+  
+}
+
+.eh-orbiting-icons-item .eh-orbiting-icons-item__circle-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.eh-orbiting-icons-item .eh-orbiting-icons-item__circle-path circle {
+ fill: none;
+ stroke: currentColor;
+  r: var(--radius, 170);
+  stroke-width: var(--stroke-width, 1)
+}
+
+@keyframes eh-orbiting-icons-animation {
+  0% {
+    transform: rotate(calc(var(--angle) * 1deg))
+      translateY(calc(var(--radius, 170) * -1px)) 
+      rotate(calc(var(--angle) * -1deg));
+  }
+  100% {
+    transform: rotate(calc(var(--angle) * 1deg + 360deg))
+      translateY(calc(var(--radius, 170) * -1px))
+      rotate(calc((var(--angle) * -1deg) - 360deg));
+  }
+}

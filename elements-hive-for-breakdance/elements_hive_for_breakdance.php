@@ -2,7 +2,7 @@
 /**
  * @package     ElementsHiveForBreakdance
  * @author      Elements Hive
- * @copyright   2024 RELYzIT SRL
+ * @copyright   2025 RELYzIT SRL
  * @license     GPLv3+
  *
  * @wordpress-plugin
@@ -14,12 +14,11 @@
  * License: GPLv3+
  * Text Domain: elementshive
  * Domain Path: /languages/
- * Version: 1.4.1
+ * Version: 1.5.0
  */
 
 defined( 'ABSPATH' ) or die( 'you do not have access to this page!' );
 
-// use function Breakdance\Util\getDirectoryPathRelativeToPluginFolder;
 
 if (!function_exists('is_plugin_active')) {
     include_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -44,75 +43,6 @@ if( !$breakdance_exists || !is_plugin_active('breakdance/plugin.php')) {
 	return false;
 }
 
-
-/*
-** Don't need to implement workaround for GSAP dependencies. everyone should be using BD above 1.3
-*/
-// const __BREAKDANCE_MINIMUM_VESRION = '1.3.0';
-// const __BREAKDANCE_FILE = WP_PLUGIN_DIR . '/breakdance/plugin.php';
-// const __EH_GSAP_LOCAL = '%%BREAKDANCE_ELEMENTS_PLUGIN_URL%%dependencies-files/gsap@3.8.0/gsap.min.js';
-// const __EH_GSAP_CDN = '%%BREAKDANCE_REUSABLE_GSAP%%';
-// const __EH_SCROLLTRIGGER_LOCAL = '%%BREAKDANCE_ELEMENTS_PLUGIN_URL%%dependencies-files/gsap@3.8.0/ScrollTrigger.min.js';
-// const __EH_SCROLLTRIGGER_CDN = '%%BREAKDANCE_REUSABLE_SCROLL_TRIGGER%%';
-
-
-// const __BREAKDANCE_FILE = WP_PLUGIN_DIR . '/breakdance/plugin.php';
-
-// $breakdance_data = '';
-
-// try {
-// 	$breakdance_data = get_file_data(__BREAKDANCE_FILE, array('Version' => 'Version'));
-// } catch (Exception $e) {
-// 	add_action('admin_notices', 'breakdance_missing_notice');
-// 	add_action('admin_init', 'eh_deactivate_plugin');
-// }
-
-/*
-** Don't need to implement workaround for GSAP dependencies. everyone should be using BD above 1.3
-*/
-// if (is_array($breakdance_data) && isset($breakdance_data['Version'])) {
-// 	$breakdance_version = $breakdance_data['Version'];
-// 	if (version_compare($breakdance_version, __BREAKDANCE_MINIMUM_VESRION, '<')) {
-// 		//add_action('admin_notices', 'breakdance_version_incompatible_notice');
-// 		//add_action('admin_init', 'eh_deactivate_plugin');
-// 		if ( ! defined( 'ELEMENTS_HIVE_GSAP') ) {
-// 			define( 'ELEMENTS_HIVE_GSAP', __EH_GSAP_LOCAL );
-// 		}
-// 		if ( ! defined( 'ELEMENTS_HIVE_SCROLLTRIGGER') ) {
-// 			define( 'ELEMENTS_HIVE_SCROLLTRIGGER', __EH_SCROLLTRIGGER_LOCAL );
-// 		}
-// 	} else {
-// 		if ( ! defined( 'ELEMENTS_HIVE_GSAP') ) {
-// 			define( 'ELEMENTS_HIVE_GSAP', __EH_GSAP_CDN );
-// 		}
-// 		if ( ! defined( 'ELEMENTS_HIVE_SCROLLTRIGGER') ) {
-// 			define( 'ELEMENTS_HIVE_SCROLLTRIGGER', __EH_SCROLLTRIGGER_CDN );
-// 		}
-// 	}
-// }
-
-// if (! function_exists('breakdance_missing_notice')) {
-// 	/**
-// 	 * Breakdance no version Admin notice ( breakdance missing ? )
-// 	 *
-// 	 * @return void
-// 	 */
-// 	function breakdance_missing_notice() {
-// 		echo '<div class="notice notice-error"><p>Unable to read Breakdance plugin file, make sure that Breakdance Page builder is installed and activated.</p></div>';
-// 	}
-// }
-
-
-// if ( !function_exists('eh_deactivate_plugin')) {
-// 	/**
-// 	 * Deactive plugin
-// 	 *
-// 	 * @return void
-// 	 */
-// 	function eh_deactivate_plugin() {
-// 		deactivate_plugins( __FILE__);
-// 	}
-// }
 
 if(!class_exists('EHForBreakdance')) {
 

@@ -24,24 +24,38 @@
 
 .eh-marquee-container[data-layout="column"][data-fade-edges="true"],
 .eh-marquee-container[data-layout="column"][data-fade-edges="1"] {
-	mask-image: linear-gradient(
+	-webkit-mask-image: linear-gradient(
       to bottom,
       transparent,
       black var(--fadeout-size, 50px),
       black calc(100% - var(--fadeout-size, 50px)),
       transparent
-    );
+  );
+  mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black var(--fadeout-size, 50px),
+      black calc(100% - var(--fadeout-size, 50px)),
+      transparent
+  );
 }
 
 .eh-marquee-container[data-layout="row"][data-fade-edges="true"],
 .eh-marquee-container[data-layout="row"][data-fade-edges="1"]{
-	mask-image: linear-gradient(
+  -webkit-mask-image: linear-gradient(
       to right,
       transparent,
       black var(--fadeout-size, 50px),
       black calc(100% - var(--fadeout-size, 50px)),
       transparent
-    );
+  );
+  mask-image: linear-gradient(
+      to right,
+      transparent,
+      black var(--fadeout-size, 50px),
+      black calc(100% - var(--fadeout-size, 50px)),
+      transparent
+  );
 }
 
 

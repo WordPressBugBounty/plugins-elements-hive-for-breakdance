@@ -15,6 +15,24 @@ function controls() {
 		'WebGL Fluid',
 		[
 			control(
+				'fluid_preset',
+				'Fluid Preset',
+				[
+					'type' => 'dropdown',
+					'layout' => 'inline',
+					'items' => [
+						'0' => ['text' => 'Preset 1', 'value' => 'preset1'],
+						'1' => ['text' => 'Preset 2', 'value' => 'preset2'],
+						'2' => ['text' => 'Preset 3', 'value' => 'preset3'],
+						'3' => ['text' => 'Preset 4', 'value' => 'preset4'],
+						'4' => ['text' => 'Preset 5', 'value' => 'preset5'],
+						'5' => ['text' => 'Preset 6', 'value' => 'preset6'],
+						'6' => ['text' => 'Preset 7', 'value' => 'preset7'],
+						'7' => ['text' => 'Preset 8', 'value' => 'preset8'],
+					],
+				]
+			),
+			control(
 				'relative_to',
 				'Relative To',
 				[
@@ -52,9 +70,9 @@ function controls() {
 			control('splat_radius', 'Radius', [
 				'type' => 'number',
 				'rangeOptions' => [
-					'min' => 0.1,
+					'min' => 0.01,
 					'max' => 1,
-					'step' => 0.1,
+					'step' => 0.01,
 				],
 			]),
 			control(
@@ -86,15 +104,34 @@ function controls() {
 				]
 			),
 			control(
+				'inject_below_fxlayers', 
+				'Inject Below FX Layers', 
+				[
+					'type' => 'toggle',
+					'condition' => [
+						'0' => [
+							'0' => ['path' => 'design.fx_layers', 'operand' => 'is set', 'value' => ''],
+							'1' => ['path' => '%%CURRENTPATH%%.relative_to', 'operand' => 'not equals', 'value' => 'page'],
+						]
+					],
+				]
+			),
+			control(
 				"infobox",
 				"Infobox",
 				[
 					'type' => 'alert_box',
 					'layout' => 'vertical',
 					'alertBoxOptions' => [
-						'style' => 'warning',
-						'content' => '<p>Will not load on touch-enabled devices like tablets and mobiles.</p>'
-					]
+						'style' => 'info',
+						'content' => '<p>Injecting the background extension below the FX layers allows you to create advanced blending setups.</p>'
+					],
+					'condition' => [
+						'0' => [
+							'0' => ['path' => 'design.fx_layers', 'operand' => 'is set', 'value' => ''],
+							'1' => ['path' => '%%CURRENTPATH%%.relative_to', 'operand' => 'not equals', 'value' => 'page'],
+						]
+					],
 				],
 			),
 		],
