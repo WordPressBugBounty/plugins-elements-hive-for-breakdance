@@ -2,13 +2,17 @@
 
 namespace ElementsHiveForBreakdance\Extensions\Backgrounds\WebglFluid;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_actions', '\ElementsHiveForBreakdance\Extensions\Backgrounds\WebglFluid\addActions', 100, 1 );
 
 function addActions( $actions ) {
 	$actions[] = [
 		'onPropertyChange' => [
 			[
-				'script' => <<<JS
+				'script' => <<<'JS'
 					( function() {
 						if ('{{design.elements_hive.backgrounds.background_type}}' == 'webgl_fluid' ) {
 							const containerEl = document.querySelector('%%SELECTOR%%')

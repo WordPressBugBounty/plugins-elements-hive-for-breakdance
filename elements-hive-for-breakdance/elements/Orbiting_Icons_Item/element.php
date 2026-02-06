@@ -2,360 +2,371 @@
 
 namespace ElementsHiveForBreakdance;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use function Breakdance\Elements\c;
 use function Breakdance\Elements\PresetSections\getPresetSection;
 
 
 \Breakdance\ElementStudio\registerElementForEditing(
-    "ElementsHiveForBreakdance\\OrbitingIconsItem",
-    \Breakdance\Util\getdirectoryPathRelativeToPluginFolder(__DIR__)
+	'ElementsHiveForBreakdance\\OrbitingIconsItem',
+	\Breakdance\Util\getdirectoryPathRelativeToPluginFolder( __DIR__ )
 );
 
-class OrbitingIconsItem extends \Breakdance\Elements\Element
-{
-    static function uiIcon()
-    {
-        return 'CircleIcon';
-    }
+class OrbitingIconsItem extends \Breakdance\Elements\Element {
 
-    static function tag()
-    {
-        return 'div';
-    }
+	public static function uiIcon() {
+		return 'CircleIcon';
+	}
 
-    static function tagOptions()
-    {
-        return [];
-    }
+	public static function tag() {
+		return 'div';
+	}
 
-    static function tagControlPath()
-    {
-        return false;
-    }
+	public static function tagOptions() {
+		return [];
+	}
 
-    static function name()
-    {
-        return 'Orbiting Icons Item';
-    }
+	public static function tagControlPath() {
+		return false;
+	}
 
-    static function className()
-    {
-        return 'eh-orbiting-icons-item';
-    }
+	public static function name() {
+		return 'Orbiting Icons Item';
+	}
 
-    static function category()
-    {
-        return 'elements_hive';
-    }
+	public static function className() {
+		return 'eh-orbiting-icons-item';
+	}
 
-    static function badge()
-    {
-        return ['backgroundColor' => 'var(--yellow300)', 'textColor' => 'var(--black)', 'label' => 'EH'];
-    }
+	public static function category() {
+		return 'elements_hive';
+	}
 
-    static function slug()
-    {
-        return __CLASS__;
-    }
+	public static function badge() {
+		return [ 'backgroundColor' => 'var(--yellow300)', 'textColor' => 'var(--black)', 'label' => 'EH' ];
+	}
 
-    static function template()
-    {
-        return file_get_contents(__DIR__ . '/html.twig');
-    }
+	public static function slug() {
+		return __CLASS__;
+	}
 
-    static function defaultCss()
-    {
-        return file_get_contents(__DIR__ . '/default.css');
-    }
+	public static function template() {
+		return file_get_contents( __DIR__ . '/html.twig' );
+	}
 
-    static function defaultProperties()
-    {
-        return false;
-    }
+	public static function defaultCss() {
+		return file_get_contents( __DIR__ . '/default.css' );
+	}
 
-    static function defaultChildren()
-    {
-        return false;
-    }
+	public static function defaultProperties() {
+		return false;
+	}
 
-    static function cssTemplate()
-    {
-        $template = file_get_contents(__DIR__ . '/css.twig');
-        return $template;
-    }
+	public static function defaultChildren() {
+		return false;
+	}
 
-    static function designControls()
-    {
-        return [c(
-        "icons",
-        "Icons",
-        [c(
-        "size",
-        "Size",
-        [],
-        ['type' => 'unit', 'layout' => 'inline'],
-        false,
-        false,
-        [],
-      ), c(
-        "color",
-        "Color",
-        [],
-        ['type' => 'color', 'layout' => 'inline'],
-        false,
-        false,
-        [],
-      ), c(
-        "background",
-        "Background",
-        [],
-        ['type' => 'color', 'layout' => 'inline'],
-        false,
-        false,
-        [],
-      ), getPresetSection(
-      "EssentialElements\\spacing_padding_all",
-      "Padding",
-      "padding",
-       ['type' => 'popout']
-     ), getPresetSection(
-      "EssentialElements\\borders",
-      "Borders",
-      "borders",
-       ['type' => 'popout']
-     )],
-        ['type' => 'section'],
-        false,
-        false,
-        [],
-      ), c(
-        "circle_path",
-        "Circle Path",
-        [c(
-        "radius",
-        "Radius",
-        [],
-        ['type' => 'unit', 'layout' => 'inline', 'unitOptions' => ['types' => ['px']], 'rangeOptions' => ['min' => 50, 'max' => 300, 'step' => 1]],
-        true,
-        false,
-        [],
-      ), c(
-        "stroke_color",
-        "Stroke Color",
-        [],
-        ['type' => 'color', 'layout' => 'inline'],
-        false,
-        false,
-        [],
-      ), c(
-        "stroke_width",
-        "Stroke Width",
-        [],
-        ['type' => 'number', 'layout' => 'inline', 'rangeOptions' => ['min' => 0, 'max' => 5, 'step' => 0.1]],
-        false,
-        false,
-        [],
-      ), c(
-        "apply_glow",
-        "Apply Glow",
-        [],
-        ['type' => 'toggle', 'layout' => 'inline'],
-        false,
-        false,
-        [],
-      )],
-        ['type' => 'section'],
-        false,
-        false,
-        [],
-      ), c(
-        "animation",
-        "Animation",
-        [c(
-        "direction",
-        "Direction",
-        [],
-        ['type' => 'button_bar', 'layout' => 'inline', 'items' => [['value' => 'normal', 'text' => 'Normal', 'icon' => 'ArrowRightIcon'], ['value' => 'reverse', 'text' => 'Reverse', 'icon' => 'ArrowLeftIcon']]],
-        true,
-        false,
-        [],
-      ), c(
-        "duration",
-        "Duration",
-        [],
-        ['type' => 'unit', 'layout' => 'inline', 'unitOptions' => ['types' => ['s']], 'rangeOptions' => ['min' => 1, 'max' => 20, 'step' => 1]],
-        true,
-        false,
-        [],
-      )],
-        ['type' => 'section'],
-        false,
-        false,
-        [],
-      ), c(
-        "position",
-        "Position",
-        [c(
-        "position",
-        "Position",
-        [],
-        ['type' => 'focus_point', 'layout' => 'vertical'],
-        true,
-        false,
-        [],
-      )],
-        ['type' => 'section'],
-        false,
-        false,
-        [],
-      )];
-    }
+	public static function cssTemplate() {
+		$template = file_get_contents( __DIR__ . '/css.twig' );
+		return $template;
+	}
 
-    static function contentControls()
-    {
-        return [c(
-        "content",
-        "Content",
-        [c(
-        "icons",
-        "Icons",
-        [c(
-        "icon",
-        "Icon",
-        [],
-        ['type' => 'icon', 'layout' => 'vertical'],
-        false,
-        false,
-        [],
-      ), c(
-        "style_overrides",
-        "Style Overrides",
-        [],
-        ['type' => 'toggle', 'layout' => 'inline'],
-        false,
-        false,
-        [],
-      ), c(
-        "size",
-        "Size",
-        [],
-        ['type' => 'unit', 'layout' => 'vertical', 'unitOptions' => ['types' => []], 'rangeOptions' => ['min' => 40, 'max' => 100, 'step' => 1], 'condition' => [[['path' => '%%CURRENTPATH%%.style_overrides', 'operand' => 'is set', 'value' => '']]]],
-        false,
-        false,
-        [],
-      ), c(
-        "color",
-        "Color",
-        [],
-        ['type' => 'color', 'layout' => 'vertical', 'condition' => [[['path' => '%%CURRENTPATH%%.style_overrides', 'operand' => 'is set', 'value' => '']]]],
-        false,
-        false,
-        [],
-      ), c(
-        "background",
-        "Background",
-        [],
-        ['type' => 'color', 'layout' => 'vertical', 'condition' => [[['path' => '%%CURRENTPATH%%.style_overrides', 'operand' => 'is set', 'value' => '']]]],
-        false,
-        false,
-        [],
-      ), getPresetSection(
-      "EssentialElements\\borders",
-      "Borders",
-      "borders",
-       ['type' => 'popout']
-     ), getPresetSection(
-      "EssentialElements\\spacing_padding_all",
-      "Padding",
-      "padding",
-       ['condition' => [[['path' => '%%CURRENTPATH%%.style_overrides', 'operand' => 'is set', 'value' => '']]], 'type' => 'popout']
-     )],
-        ['type' => 'repeater', 'layout' => 'vertical', 'repeaterOptions' => ['titleTemplate' => '', 'defaultTitle' => 'Icon', 'buttonName' => 'Add Icon']],
-        false,
-        false,
-        [],
-      )],
-        ['type' => 'section', 'layout' => 'vertical'],
-        false,
-        false,
-        [],
-      )];
-    }
+	public static function designControls() {
+		return [
+		c(
+			'icons',
+			'Icons',
+			[
+			c(
+				'size',
+				'Size',
+				[],
+				[ 'type' => 'unit', 'layout' => 'inline' ],
+				false,
+				false,
+				[],
+			),
+			c(
+				'color',
+				'Color',
+				[],
+				[ 'type' => 'color', 'layout' => 'inline' ],
+				false,
+				false,
+				[],
+			),
+			c(
+				'background',
+				'Background',
+				[],
+				[ 'type' => 'color', 'layout' => 'inline' ],
+				false,
+				false,
+				[],
+			),
+			getPresetSection(
+				'EssentialElements\\spacing_padding_all',
+				'Padding',
+				'padding',
+				[ 'type' => 'popout' ]
+			),
+			getPresetSection(
+				"EssentialElements\\borders",
+				'Borders',
+				'borders',
+				[ 'type' => 'popout' ]
+			),
+			],
+			[ 'type' => 'section' ],
+			false,
+			false,
+			[],
+		),
+		c(
+			'circle_path',
+			'Circle Path',
+			[
+			c(
+				'radius',
+				'Radius',
+				[],
+				[ 'type' => 'unit', 'layout' => 'inline', 'unitOptions' => [ 'types' => [ 'px' ] ], 'rangeOptions' => [ 'min' => 50, 'max' => 300, 'step' => 1 ] ],
+				true,
+				false,
+				[],
+			),
+			c(
+				'stroke_color',
+				'Stroke Color',
+				[],
+				[ 'type' => 'color', 'layout' => 'inline' ],
+				false,
+				false,
+				[],
+			),
+			c(
+				'stroke_width',
+				'Stroke Width',
+				[],
+				[ 'type' => 'number', 'layout' => 'inline', 'rangeOptions' => [ 'min' => 0, 'max' => 5, 'step' => 0.1 ] ],
+				false,
+				false,
+				[],
+			),
+			c(
+				'apply_glow',
+				'Apply Glow',
+				[],
+				[ 'type' => 'toggle', 'layout' => 'inline' ],
+				false,
+				false,
+				[],
+			),
+			],
+			[ 'type' => 'section' ],
+			false,
+			false,
+			[],
+		),
+		c(
+			'animation',
+			'Animation',
+			[
+			c(
+				'direction',
+				'Direction',
+				[],
+				[ 'type' => 'button_bar', 'layout' => 'inline', 'items' => [ [ 'value' => 'normal', 'text' => 'Normal', 'icon' => 'ArrowRightIcon' ], [ 'value' => 'reverse', 'text' => 'Reverse', 'icon' => 'ArrowLeftIcon' ] ] ],
+				true,
+				false,
+				[],
+			),
+			c(
+				'duration',
+				'Duration',
+				[],
+				[ 'type' => 'unit', 'layout' => 'inline', 'unitOptions' => [ 'types' => [ 's' ] ], 'rangeOptions' => [ 'min' => 1, 'max' => 20, 'step' => 1 ] ],
+				true,
+				false,
+				[],
+			),
+			],
+			[ 'type' => 'section' ],
+			false,
+			false,
+			[],
+		),
+		c(
+			'position',
+			'Position',
+			[
+			c(
+				'position',
+				'Position',
+				[],
+				[ 'type' => 'focus_point', 'layout' => 'vertical' ],
+				true,
+				false,
+				[],
+			),
+			],
+			[ 'type' => 'section' ],
+			false,
+			false,
+			[],
+		),
+		];
+	}
 
-    static function settingsControls()
-    {
-        return [];
-    }
+	public static function contentControls() {
+		return [
+		c(
+			'content',
+			'Content',
+			[
+			c(
+				'icons',
+				'Icons',
+				[
+				c(
+					'icon',
+					'Icon',
+					[],
+					[ 'type' => 'icon', 'layout' => 'vertical' ],
+					false,
+					false,
+					[],
+				),
+				c(
+					'style_overrides',
+					'Style Overrides',
+					[],
+					[ 'type' => 'toggle', 'layout' => 'inline' ],
+					false,
+					false,
+					[],
+				),
+				c(
+					'size',
+					'Size',
+					[],
+					[ 'type' => 'unit', 'layout' => 'vertical', 'unitOptions' => [ 'types' => [] ], 'rangeOptions' => [ 'min' => 40, 'max' => 100, 'step' => 1 ], 'condition' => [ [ [ 'path' => '%%CURRENTPATH%%.style_overrides', 'operand' => 'is set', 'value' => '' ] ] ] ],
+					false,
+					false,
+					[],
+				),
+				c(
+					'color',
+					'Color',
+					[],
+					[ 'type' => 'color', 'layout' => 'vertical', 'condition' => [ [ [ 'path' => '%%CURRENTPATH%%.style_overrides', 'operand' => 'is set', 'value' => '' ] ] ] ],
+					false,
+					false,
+					[],
+				),
+				c(
+					'background',
+					'Background',
+					[],
+					[ 'type' => 'color', 'layout' => 'vertical', 'condition' => [ [ [ 'path' => '%%CURRENTPATH%%.style_overrides', 'operand' => 'is set', 'value' => '' ] ] ] ],
+					false,
+					false,
+					[],
+				),
+				getPresetSection(
+					"EssentialElements\\borders",
+					'Borders',
+					'borders',
+					[ 'type' => 'popout' ]
+				),
+				getPresetSection(
+					'EssentialElements\\spacing_padding_all',
+					'Padding',
+					'padding',
+					[ 'condition' => [ [ [ 'path' => '%%CURRENTPATH%%.style_overrides', 'operand' => 'is set', 'value' => '' ] ] ], 'type' => 'popout' ]
+				),
+				],
+				[ 'type' => 'repeater', 'layout' => 'vertical', 'repeaterOptions' => [ 'titleTemplate' => '', 'defaultTitle' => 'Icon', 'buttonName' => 'Add Icon' ] ],
+				false,
+				false,
+				[],
+			),
+			],
+			[ 'type' => 'section', 'layout' => 'vertical' ],
+			false,
+			false,
+			[],
+		),
+		];
+	}
 
-    static function dependencies()
-    {
-        return false;
-    }
+	public static function settingsControls() {
+		return [];
+	}
 
-    static function settings()
-    {
-        return false;
-    }
+	public static function dependencies() {
+		return false;
+	}
 
-    static function addPanelRules()
-    {
-        return false;
-    }
+	public static function settings() {
+		return false;
+	}
 
-    static public function actions()
-    {
-        return false;
-    }
+	public static function addPanelRules() {
+		return false;
+	}
 
-    static function nestingRule()
-    {
-        return ["type" => "final", "restrictedToBeADirectChildOf" => ['ElementsHiveForBreakdance\OrbitingCircles', 'ElementsHiveForBreakdance\OrbitingIcons'],  ];
-    }
+	public static function actions() {
+		return false;
+	}
 
-    static function spacingBars()
-    {
-        return false;
-    }
+	public static function nestingRule() {
+		return [ 'type' => 'final', 'restrictedToBeADirectChildOf' => [ 'ElementsHiveForBreakdance\OrbitingCircles', 'ElementsHiveForBreakdance\OrbitingIcons' ] ];
+	}
 
-    static function attributes()
-    {
-        return false;
-    }
+	public static function spacingBars() {
+		return false;
+	}
 
-    static function experimental()
-    {
-        return false;
-    }
+	public static function attributes() {
+		return false;
+	}
 
-    static function order()
-    {
-        return 10;
-    }
+	public static function experimental() {
+		return false;
+	}
 
-    static function dynamicPropertyPaths()
-    {
-        return [];
-    }
+	public static function order() {
+		return 10;
+	}
 
-    static function additionalClasses()
-    {
-        return [['name' => 'eh-orbit-animation-reversed', 'template' => '{% if design.animation.direction|default(\'forward\') == \'reversed\' %}
+	public static function dynamicPropertyPaths() {
+		return [];
+	}
+
+	public static function additionalClasses() {
+		return [
+		[
+		'name' => 'eh-orbit-animation-reversed',
+		'template' => '{% if design.animation.direction|default(\'forward\') == \'reversed\' %}
   true
-{% endif %}']];
-    }
+{% endif %}',
+		],
+		];
+	}
 
-    static function projectManagement()
-    {
-        return false;
-    }
+	public static function projectManagement() {
+		return false;
+	}
 
-    static function propertyPathsToWhitelistInFlatProps()
-    {
-        return false;
-    }
+	public static function propertyPathsToWhitelistInFlatProps() {
+		return false;
+	}
 
-    static function propertyPathsToSsrElementWhenValueChanges()
-    {
-        return false;
-    }
+	public static function propertyPathsToSsrElementWhenValueChanges() {
+		return false;
+	}
 }

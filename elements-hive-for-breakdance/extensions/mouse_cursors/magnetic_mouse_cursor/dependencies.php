@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\MouseCursors\MagneticMouseCursor;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_dependencies', 'ElementsHiveForBreakdance\Extensions\MouseCursors\MagneticMouseCursor\addDependencies', 100, 1 );
 
 /**
@@ -22,11 +26,11 @@ function addDependencies( $deps ) {
 	];
 
 	// $deps[] = [
-	// 	'frontendCondition' => $condition,
-	// 	'builderCondition' => $condition,
-	// 	'scripts' => [
-	// 		ELEMENTS_HIVE_DIR . 'extensions/mouse_cursors/magnetic_mouse_cursor/assets/js/eh_magnetic_cursor.min.js',
-	// 	],
+	// 'frontendCondition' => $condition,
+	// 'builderCondition' => $condition,
+	// 'scripts' => [
+	// ELEMENTS_HIVE_DIR . 'extensions/mouse_cursors/magnetic_mouse_cursor/assets/js/eh_magnetic_cursor.min.js',
+	// ],
 	// ];
 
 	$deps[] = [

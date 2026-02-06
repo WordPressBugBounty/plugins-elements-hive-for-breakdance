@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\Backgrounds\WebglKineticTypography;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use function Breakdance\Elements\control;
 use function Breakdance\Elements\controlSection;
 
@@ -25,36 +29,36 @@ function controls() {
 							'type' => 'dropdown',
 							'layout' => 'inline',
 							'items' => [
-								'0' => ['text' => 'Box', 'value' => 'box'],
-								'1' => ['text' => 'Plane Square', 'value' => 'plane_square'],
-								'2' => ['text' => 'Plane Rectangle', 'value' => 'plane_rectangle'],
-								'3' => ['text' => 'Sphere', 'value' => 'sphere'],
-								'4' => ['text' => 'Torus', 'value' => 'torus'],
-								'5' => ['text' => 'Torus Knot', 'value' => 'knot'],
-								'6' => ['text' => 'Torus Knot 2', 'value' => 'knot_2'],
-								'7' => ['text' => 'Rectangle', 'value' => 'rectangle'],
+								'0' => [ 'text' => 'Box', 'value' => 'box' ],
+								'1' => [ 'text' => 'Plane Square', 'value' => 'plane_square' ],
+								'2' => [ 'text' => 'Plane Rectangle', 'value' => 'plane_rectangle' ],
+								'3' => [ 'text' => 'Sphere', 'value' => 'sphere' ],
+								'4' => [ 'text' => 'Torus', 'value' => 'torus' ],
+								'5' => [ 'text' => 'Torus Knot', 'value' => 'knot' ],
+								'6' => [ 'text' => 'Torus Knot 2', 'value' => 'knot_2' ],
+								'7' => [ 'text' => 'Rectangle', 'value' => 'rectangle' ],
 							],
 						]
 					),
 					// control(
-					// 	'isScallable',
-					// 	'Enable auto-scale',
-					// 	[
-					// 		'type' => 'toggle',
-					// 	],
+					// 'isScallable',
+					// 'Enable auto-scale',
+					// [
+					// 'type' => 'toggle',
+					// ],
 					// ),
 					// control(
-					// 	'scale_factor',
-					// 	'Scale Factor',
-					// 	[
-					// 		'type' => 'number',
-					// 		'rangeOptions' => [
-					// 			'min' => 0.1,
-					// 			'max' => 3.2,
-					// 			'step' => 0.1,
-					// 		],
-					// 		'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.isScallable', 'operand' => 'equals', 'value' => true] ] ],
-					// 	]
+					// 'scale_factor',
+					// 'Scale Factor',
+					// [
+					// 'type' => 'number',
+					// 'rangeOptions' => [
+					// 'min' => 0.1,
+					// 'max' => 3.2,
+					// 'step' => 0.1,
+					// ],
+					// 'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.isScallable', 'operand' => 'equals', 'value' => true] ] ],
+					// ]
 					// ),
 					controlSection(
 						'image',
@@ -63,7 +67,7 @@ function controls() {
 						control(
 							'texture',
 							'Texture',
-							['type' => 'wpmedia', 'layout' => 'vertical', 'mediaOptions' => [ 'multiple' => false ]],
+							[ 'type' => 'wpmedia', 'layout' => 'vertical', 'mediaOptions' => [ 'multiple' => false ] ],
 						),
 						control(
 							'repeat_x',
@@ -91,10 +95,10 @@ function controls() {
 								],
 							]
 						),
-					],
-					[],
-					'popout',
-				),
+						],
+						[],
+						'popout',
+					),
 				controlSection(
 					'image_animation',
 					'Image Animation',
@@ -113,10 +117,10 @@ function controls() {
 								'type' => 'dropdown',
 								'layout' => 'inline',
 								'items' => [
-									'0' => ['text' => 'Horizontal', 'value' => 0],
-									'1' => ['text' => 'Vertical', 'value' => 1],
+									'0' => [ 'text' => 'Horizontal', 'value' => 0 ],
+									'1' => [ 'text' => 'Vertical', 'value' => 1 ],
 								],
-								'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+								'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 							]
 						),
 						control(
@@ -126,10 +130,10 @@ function controls() {
 								'type' => 'dropdown',
 								'layout' => 'inline',
 								'items' => [
-									'0' => ['text' => 'Forward', 'value' => -1],
-									'1' => ['text' => 'Backward', 'value' => 1],
+									'0' => [ 'text' => 'Forward', 'value' => -1 ],
+									'1' => [ 'text' => 'Backward', 'value' => 1 ],
 								],
-								'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+								'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 							]
 						),
 						control(
@@ -143,7 +147,7 @@ function controls() {
 									'max' => 5,
 									'step' => 0.1,
 								],
-								'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+								'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 							],
 						),
 					],
@@ -168,7 +172,7 @@ function controls() {
 							[
 								'type' => 'unit',
 								'layout' => 'inline',
-								'unitOptions' => ['types' => ['deg']],
+								'unitOptions' => [ 'types' => [ 'deg' ] ],
 								'rangeOptions' =>
 								[
 									'min' => 0,
@@ -183,7 +187,7 @@ function controls() {
 							[
 								'type' => 'unit',
 								'layout' => 'inline',
-								'unitOptions' => ['types' => ['deg']],
+								'unitOptions' => [ 'types' => [ 'deg' ] ],
 								'rangeOptions' =>
 								[
 									'min' => 0,
@@ -198,7 +202,7 @@ function controls() {
 							[
 								'type' => 'unit',
 								'layout' => 'inline',
-								'unitOptions' => ['types' => ['deg']],
+								'unitOptions' => [ 'types' => [ 'deg' ] ],
 								'rangeOptions' =>
 								[
 									'min' => 0,
@@ -255,7 +259,7 @@ function controls() {
 										'max' => 2,
 										'step' => 1,
 									],
-									'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+									'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 								]
 							),
 							control(
@@ -269,7 +273,7 @@ function controls() {
 										'max' => 1,
 										'step' => 0.1,
 									],
-									'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+									'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 								]
 							),
 						],
@@ -295,10 +299,10 @@ function controls() {
 									'layout' => 'inline',
 									'items' =>
 									[
-										'0' => ['text' => 'Forward', 'value' => '1'],
-										'1' => ['text' => 'Backward', 'value' => '-1'],
+										'0' => [ 'text' => 'Forward', 'value' => '1' ],
+										'1' => [ 'text' => 'Backward', 'value' => '-1' ],
 									],
-									'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+									'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 								]
 							),
 							control(
@@ -312,7 +316,7 @@ function controls() {
 										'max' => 10,
 										'step' => 0.1,
 									],
-									'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+									'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 								]
 							),
 						],
@@ -341,7 +345,7 @@ function controls() {
 										'max' => 5,
 										'step' => 0.1,
 									],
-									'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+									'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 								]
 							),
 						],
@@ -364,7 +368,7 @@ function controls() {
 								'Enable Ripple Shadow',
 								[
 									'type' => 'toggle',
-									'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+									'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 								],
 							),
 							control(
@@ -378,7 +382,7 @@ function controls() {
 										'max' => 10,
 										'step' => 0.1,
 									],
-									'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+									'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 								]
 							),
 							control(
@@ -392,7 +396,7 @@ function controls() {
 										'max' => 1,
 										'step' => 0.01,
 									],
-									'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+									'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 								]
 							),
 							control(
@@ -406,7 +410,7 @@ function controls() {
 										'max' => 1,
 										'step' => 0.1,
 									],
-									'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+									'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 								]
 							),
 						],
@@ -430,7 +434,7 @@ function controls() {
 								[
 									'type' => 'color',
 									'colorOptions' => [ 'type' => 'solidOnly' ],
-									'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+									'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 								]
 							),
 							control(
@@ -444,7 +448,7 @@ function controls() {
 										'max' => 5,
 										'step' => 0.1,
 									],
-									'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+									'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 								],
 							),
 						],
@@ -468,7 +472,7 @@ function controls() {
 								[
 									'type' => 'color',
 									'colorOptions' => [ 'type' => 'solidOnly' ],
-									'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+									'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 								]
 							),
 							control(
@@ -482,7 +486,7 @@ function controls() {
 										'max' => 5,
 										'step' => 0.1,
 									],
-									'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+									'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 								],
 							),
 						],
@@ -511,13 +515,13 @@ function controls() {
 										'max' => 30,
 										'step' => 1,
 									],
-									'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true] ] ],
+									'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enable', 'operand' => 'equals', 'value' => true ] ] ],
 								]
 							),
 						],
 						[ 'isExternal' => true ],
 						'popout',
-					)
+					),
 				],
 				[ 'isExternal' => true ],
 				'popout'
@@ -530,27 +534,27 @@ function controls() {
 				]
 			),
 			control(
-				"disable_on_touch_devices",
-        		"Disable on Touch Devices",
+				'disable_on_touch_devices',
+				'Disable on Touch Devices',
 				[
 					'type' => 'toggle',
 				]
 			),
 			control(
-				"infobox",
-				"Infobox",
+				'infobox',
+				'Infobox',
 				[
 					'type' => 'alert_box',
 					'layout' => 'vertical',
 					'alertBoxOptions' => [
 						'style' => 'warning',
-						'content' => '<p>Will not load on touch-enabled devices like tablets and mobiles.</p>'
-					]
+						'content' => '<p>Will not load on touch-enabled devices like tablets and mobiles.</p>',
+					],
 				],
 			),
 		],
 		[
-			'condition' => ['path' => 'design.elements_hive.backgrounds.background_type', 'operand' => 'equals', 'value' => 'webgl_kinetic_typography'],
+			'condition' => [ 'path' => 'design.elements_hive.backgrounds.background_type', 'operand' => 'equals', 'value' => 'webgl_kinetic_typography' ],
 			'isExternal' => true,
 		],
 		'popout'

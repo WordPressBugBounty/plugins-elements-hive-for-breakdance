@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 require_once __DIR__ . '/vendor/tareq1988/wp-php-cs-fixer/loader.php';
 
 $finder = PhpCsFixer\Finder::create()

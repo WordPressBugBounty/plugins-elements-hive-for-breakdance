@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\MouseCursors;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use function Breakdance\Elements\control;
 use function Breakdance\Elements\controlSection;
 
@@ -21,8 +25,8 @@ function controls() {
 					'type' => 'dropdown',
 					'layout' => 'inline',
 					'items' => [
-						'0' => ['text' => 'Ink Cursor', 'value' => 'ink_cursor'],
-						'1' => ['text' => 'Magnetic Cursor', 'value' => 'magnetic_cursor'],
+						'0' => [ 'text' => 'Ink Cursor', 'value' => 'ink_cursor' ],
+						'1' => [ 'text' => 'Magnetic Cursor', 'value' => 'magnetic_cursor' ],
 					],
 				],
 			),
@@ -33,4 +37,3 @@ function controls() {
 		'popout'
 	);
 }
-

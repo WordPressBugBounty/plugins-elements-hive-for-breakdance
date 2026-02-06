@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\Backlight;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 require __DIR__ . '/control.php';
 require_once __DIR__ . '/dependencies.php';
 require_once __DIR__ . '/actions.php';

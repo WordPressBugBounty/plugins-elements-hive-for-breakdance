@@ -2,287 +2,307 @@
 
 namespace ElementsHiveForBreakdance;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use function Breakdance\Elements\c;
 use function Breakdance\Elements\PresetSections\getPresetSection;
 
 
 \Breakdance\ElementStudio\registerElementForEditing(
-    "ElementsHiveForBreakdance\\WebglMediaHoverDistortion",
-    \Breakdance\Util\getdirectoryPathRelativeToPluginFolder(__DIR__)
+	'ElementsHiveForBreakdance\\WebglMediaHoverDistortion',
+	\Breakdance\Util\getdirectoryPathRelativeToPluginFolder( __DIR__ )
 );
 
-class WebglMediaHoverDistortion extends \Breakdance\Elements\Element
-{
-    static function uiIcon()
-    {
-        return 'ImageIcon';
-    }
+class WebglMediaHoverDistortion extends \Breakdance\Elements\Element {
 
-    static function tag()
-    {
-        return 'div';
-    }
+	public static function uiIcon() {
+		return 'ImageIcon';
+	}
 
-    static function tagOptions()
-    {
-        return [];
-    }
+	public static function tag() {
+		return 'div';
+	}
 
-    static function tagControlPath()
-    {
-        return false;
-    }
+	public static function tagOptions() {
+		return [];
+	}
 
-    static function name()
-    {
-        return 'WebGL Media Hover Distortion';
-    }
+	public static function tagControlPath() {
+		return false;
+	}
 
-    static function className()
-    {
-        return 'eh-webgl-media-hover-distortion';
-    }
+	public static function name() {
+		return 'WebGL Media Hover Distortion';
+	}
 
-    static function category()
-    {
-        return 'elements_hive';
-    }
+	public static function className() {
+		return 'eh-webgl-media-hover-distortion';
+	}
 
-    static function badge()
-    {
-      return ['backgroundColor' => 'var(--yellow300)', 'textColor' => 'var(--black)', 'label' => 'EH'];
-    }
+	public static function category() {
+		return 'elements_hive';
+	}
 
-    static function slug()
-    {
-        return __CLASS__;
-    }
+	public static function badge() {
+		return [ 'backgroundColor' => 'var(--yellow300)', 'textColor' => 'var(--black)', 'label' => 'EH' ];
+	}
 
-    static function template()
-    {
-        return file_get_contents(__DIR__ . '/html.twig');
-    }
+	public static function slug() {
+		return __CLASS__;
+	}
 
-    static function defaultCss()
-    {
-        return file_get_contents(__DIR__ . '/default.css');
-    }
+	public static function template() {
+		return file_get_contents( __DIR__ . '/html.twig' );
+	}
 
-    static function defaultProperties()
-    {
-        return ['content' => ['media' => ['default_media' => ['id' => 205, 'filename' => 'bird.webp', 'url' => ELEMENTS_HIVE_DIR . 'assets/images/placeholders/bird.webp', 'alt' => '', 'caption' => '', 'mime' => 'image/webp', 'type' => 'image', 'sizes' => [], 'attributes' => ['srcset' => '']], 'hover_media' => ['id' => 206, 'filename' => 'dog.webp', 'url' => ELEMENTS_HIVE_DIR . 'assets/images/placeholders/dog.webp', 'alt' => '', 'caption' => '', 'mime' => 'image/webp', 'type' => 'image', 'sizes' => [], 'attributes' => ['srcset' => '']], 'size' => null, 'default_media_dynamic_meta' => null, 'hover_media_dynamic_meta' => null], 'distortion_map' => ['use_custom_distortion_image' => false, 'custom_distortion_image' => null, 'default_distortions' => '4.jpg', 'custom_distortion_image_dynamic_meta' => null], 'distortion_effect' => ['distortion_intensity' => 1, 'distortion_angle' => '45', 'effect_duration_in' => ['number' => 1, 'unit' => 's', 'style' => '1s'], 'effect_duration_out' => ['number' => 1, 'unit' => 's', 'style' => '1s'], 'easing' => 'expo.inOut', 'angle' => '180']], 'design' => ['media' => ['width' => null, 'height' => ['breakpoint_base' => null], 'border_radius' => null], 'spacing' => null, 'disable_on_touch_devices' => ['enabled' => null, 'show_default_media' => false]]];
-    }
+	public static function defaultCss() {
+		return file_get_contents( __DIR__ . '/default.css' );
+	}
 
-    static function defaultChildren()
-    {
-        return false;
-    }
+	public static function defaultProperties() {
+		return [ 'content' => [ 'media' => [ 'default_media' => [ 'id' => 205, 'filename' => 'bird.webp', 'url' => ELEMENTS_HIVE_DIR . 'assets/images/placeholders/bird.webp', 'alt' => '', 'caption' => '', 'mime' => 'image/webp', 'type' => 'image', 'sizes' => [], 'attributes' => [ 'srcset' => '' ] ], 'hover_media' => [ 'id' => 206, 'filename' => 'dog.webp', 'url' => ELEMENTS_HIVE_DIR . 'assets/images/placeholders/dog.webp', 'alt' => '', 'caption' => '', 'mime' => 'image/webp', 'type' => 'image', 'sizes' => [], 'attributes' => [ 'srcset' => '' ] ], 'size' => null, 'default_media_dynamic_meta' => null, 'hover_media_dynamic_meta' => null ], 'distortion_map' => [ 'use_custom_distortion_image' => false, 'custom_distortion_image' => null, 'default_distortions' => '4.jpg', 'custom_distortion_image_dynamic_meta' => null ], 'distortion_effect' => [ 'distortion_intensity' => 1, 'distortion_angle' => '45', 'effect_duration_in' => [ 'number' => 1, 'unit' => 's', 'style' => '1s' ], 'effect_duration_out' => [ 'number' => 1, 'unit' => 's', 'style' => '1s' ], 'easing' => 'expo.inOut', 'angle' => '180' ] ], 'design' => [ 'media' => [ 'width' => null, 'height' => [ 'breakpoint_base' => null ], 'border_radius' => null ], 'spacing' => null, 'disable_on_touch_devices' => [ 'enabled' => null, 'show_default_media' => false ] ] ];
+	}
 
-    static function cssTemplate()
-    {
-        $template = file_get_contents(__DIR__ . '/css.twig');
-        return $template;
-    }
+	public static function defaultChildren() {
+		return false;
+	}
 
-    static function designControls()
-    {
-        return [c(
-        "media",
-        "Media",
-        [c(
-        "width",
-        "Width",
-        [],
-        ['type' => 'unit', 'layout' => 'inline'],
-        true,
-        false,
-        [],
-      ), c(
-        "height",
-        "Height",
-        [],
-        ['type' => 'unit', 'layout' => 'inline'],
-        true,
-        false,
-        [],
-      ), c(
-        "border_radius",
-        "Border Radius",
-        [],
-        ['type' => 'border_radius', 'layout' => 'vertical'],
-        true,
-        false,
-        [],
-      )],
-        ['type' => 'section'],
-        false,
-        false,
-        [],
-      ), c(
-        "disable_on_touch_devices",
-        "Disable on Touch Devices",
-        [c(
-        "enabled",
-        "Enabled",
-        [],
-        ['type' => 'toggle', 'layout' => 'inline'],
-        false,
-        false,
-        [],
-      ), c(
-        "show_default_media",
-        "Show Default Media",
-        [],
-        ['type' => 'toggle', 'layout' => 'inline', 'condition' => [[['path' => 'design.disable_on_touch_devices.enabled', 'operand' => 'is set', 'value' => '']]]],
-        false,
-        false,
-        [],
-      ), c(
-        "info_box",
-        "Info box",
-        [],
-        ['type' => 'alert_box', 'layout' => 'vertical', 'alertBoxOptions' => ['style' => 'warning', 'content' => '<p>Will not load on touch-enabled devices like tablets and mobiles.</p>']],
-        false,
-        false,
-        [],
-      )],
-        ['type' => 'section'],
-        false,
-        false,
-        [],
-      ), getPresetSection(
-      "EssentialElements\\spacing_margin_y",
-      "Spacing",
-      "spacing",
-       ['type' => 'popout']
-     )];
-    }
+	public static function cssTemplate() {
+		$template = file_get_contents( __DIR__ . '/css.twig' );
+		return $template;
+	}
 
-    static function contentControls()
-    {
-        return [c(
-        "media",
-        "Media",
-        [c(
-        "default_media",
-        "Default Media",
-        [],
-        ['type' => 'wpmedia', 'layout' => 'vertical', 'mediaOptions' => ['acceptedFileTypes' => ['image', 'video'], 'multiple' => false]],
-        false,
-        false,
-        [],
-      ), c(
-        "hover_media",
-        "Hover Media",
-        [],
-        ['type' => 'wpmedia', 'layout' => 'vertical', 'mediaOptions' => ['acceptedFileTypes' => ['image', 'video'], 'multiple' => false]],
-        false,
-        false,
-        [],
-      ), c(
-        "size",
-        "Size",
-        [],
-        ['type' => 'media_size_dropdown', 'layout' => 'vertical'],
-        false,
-        false,
-        [],
-      )],
-        ['type' => 'section', 'layout' => 'vertical'],
-        false,
-        false,
-        [],
-      ), c(
-        "distortion_map",
-        "Distortion Map",
-        [c(
-        "default_distortions",
-        "Default Distortions",
-        [],
-        ['type' => 'dropdown', 'layout' => 'vertical', 'mediaOptions' => ['acceptedFileTypes' => ['image'], 'multiple' => false], 'condition' => ['path' => 'content.distortion_map.use_custom_distortion_image', 'operand' => 'is not set', 'value' => 'false'], 'items' => [['value' => '1.jpg', 'text' => 'Distortion 1'], ['value' => '2.jpg', 'text' => 'Distortion 2'], ['value' => '3.jpg', 'text' => 'Distortion 3'], ['value' => '4.jpg', 'text' => 'Distortion 4'], ['value' => '5.jpg', 'text' => 'Distortion 5'], ['value' => '6.jpg', 'text' => 'Distortion 6'], ['value' => '7.jpg', 'text' => 'Distortion 7'], ['value' => '8.jpg', 'text' => 'Distortion 8'], ['value' => '9.jpg', 'text' => 'Distortion 9'], ['value' => '10.jpg', 'text' => 'Distortion 10'], ['value' => '11.jpg', 'text' => 'Distortion 11'], ['value' => '12.jpg', 'text' => 'Distortion 12'], ['value' => '13.jpg', 'text' => 'Distortion 13'], ['value' => '14.jpg', 'text' => 'Distortion 14'], ['value' => '15.jpg', 'text' => 'Distortion 15'], ['value' => '16.jpg', 'text' => 'Distortion 16'], ['value' => '17.jpg', 'text' => 'Distortion 17'], ['value' => '18.jpg', 'text' => 'Distortion 18'], ['value' => '19.jpg', 'text' => 'Distortion 19'], ['value' => '20.jpg', 'text' => 'Distortion 20']]],
-        false,
-        false,
-        [],
-      ), c(
-        "use_custom_distortion_image",
-        "Use Custom Distortion Image",
-        [],
-        ['type' => 'toggle', 'layout' => 'vertical'],
-        false,
-        false,
-        [],
-      ), c(
-        "custom_distortion_image",
-        "Custom Distortion Image",
-        [],
-        ['type' => 'wpmedia', 'layout' => 'vertical', 'mediaOptions' => ['acceptedFileTypes' => ['image'], 'multiple' => false], 'condition' => ['path' => 'content.distortion_map.use_custom_distortion_image', 'operand' => 'is set', 'value' => 'true']],
-        false,
-        false,
-        [],
-      )],
-        ['type' => 'section', 'layout' => 'vertical'],
-        false,
-        false,
-        [],
-      ), c(
-        "distortion_effect",
-        "Distortion Effect",
-        [c(
-        "distortion_angle",
-        "Distortion Angle",
-        [],
-        ['type' => 'dropdown', 'layout' => 'inline', 'items' => [['value' => '45', 'text' => 'Left'], ['text' => 'Right', 'value' => '225'], ['text' => 'Top', 'value' => '135'], ['text' => 'Bottom', 'value' => '315'], ['text' => 'Bottom Left', 'value' => '0'], ['text' => 'Bottom Right', 'value' => '270'], ['text' => 'Top Left', 'value' => '90'], ['text' => 'Top Right', 'value' => '180']]],
-        false,
-        false,
-        [],
-      ), c(
-        "distortion_intensity",
-        "Distortion Intensity",
-        [],
-        ['type' => 'number', 'layout' => 'inline', 'rangeOptions' => ['min' => 0, 'max' => 1, 'step' => 0.1]],
-        false,
-        false,
-        [],
-      ), c(
-        "hover_in_duration",
-        "Hover In Duration",
-        [],
-        ['type' => 'unit', 'layout' => 'inline', 'rangeOptions' => ['min' => 0, 'max' => 2, 'step' => 0.1], 'unitOptions' => ['types' => ['s'], 'defaultType' => 's']],
-        false,
-        false,
-        [],
-      ), c(
-        "hover_out_duration",
-        "Hover Out Duration",
-        [],
-        ['type' => 'unit', 'layout' => 'inline', 'unitOptions' => ['types' => ['s'], 'defaultType' => 's'], 'rangeOptions' => ['min' => 0, 'max' => 2, 'step' => 0.1]],
-        false,
-        false,
-        [],
-      ), c(
-        "easing",
-        "Easing",
-        [],
-        ['type' => 'dropdown', 'layout' => 'inline', 'items' => [['value' => 'none', 'text' => 'Linear'], ['text' => 'Power 1 In', 'value' => 'power1.in'], ['text' => 'Power 1 Out', 'value' => 'power1.out'], ['text' => 'Power 1 In Out', 'value' => 'power1.inOut'], ['text' => 'Power 2 In', 'value' => 'power2.in'], ['text' => 'Power 2 Out', 'value' => 'power2.out'], ['text' => 'Power 2 In Out', 'value' => 'power2.inOut'], ['text' => 'Power 3 In', 'value' => 'power3.in'], ['text' => 'Power 3 Out', 'value' => 'power3.out'], ['text' => 'Power 3 In Out', 'value' => 'power3.inOut'], ['text' => 'Power 4 In', 'value' => 'power4.in'], ['text' => 'Power 4 Out', 'value' => 'power4.out'], ['text' => 'Power 4 In Out', 'value' => 'power4.inOut'], ['text' => 'Expo In', 'value' => 'expo.in'], ['text' => 'Expo Out', 'value' => 'expo.out'], ['text' => 'Expo In Out', 'value' => 'expo.inOut'], ['text' => 'Slow', 'value' => 'slow (0.7, 0.7, false)'], ['text' => 'Circ In', 'value' => 'circ.in'], ['text' => 'Circ Out', 'value' => 'circ.out'], ['text' => 'Circ In Out', 'value' => 'circ.inOut'], ['text' => 'Sine In', 'value' => 'sine.in'], ['text' => 'Sine Out', 'value' => 'sine.out'], ['text' => 'Sine In Out', 'value' => 'sine.inOut']]],
-        false,
-        false,
-        [],
-      )],
-        ['type' => 'section', 'layout' => 'vertical'],
-        false,
-        false,
-        [],
-      )];
-    }
+	public static function designControls() {
+		return [
+		c(
+			'media',
+			'Media',
+			[
+			c(
+				'width',
+				'Width',
+				[],
+				[ 'type' => 'unit', 'layout' => 'inline' ],
+				true,
+				false,
+				[],
+			),
+			c(
+				'height',
+				'Height',
+				[],
+				[ 'type' => 'unit', 'layout' => 'inline' ],
+				true,
+				false,
+				[],
+			),
+			c(
+				'border_radius',
+				'Border Radius',
+				[],
+				[ 'type' => 'border_radius', 'layout' => 'vertical' ],
+				true,
+				false,
+				[],
+			),
+			],
+			[ 'type' => 'section' ],
+			false,
+			false,
+			[],
+		),
+		c(
+			'disable_on_touch_devices',
+			'Disable on Touch Devices',
+			[
+			c(
+				'enabled',
+				'Enabled',
+				[],
+				[ 'type' => 'toggle', 'layout' => 'inline' ],
+				false,
+				false,
+				[],
+			),
+			c(
+				'show_default_media',
+				'Show Default Media',
+				[],
+				[ 'type' => 'toggle', 'layout' => 'inline', 'condition' => [ [ [ 'path' => 'design.disable_on_touch_devices.enabled', 'operand' => 'is set', 'value' => '' ] ] ] ],
+				false,
+				false,
+				[],
+			),
+			c(
+				'info_box',
+				'Info box',
+				[],
+				[ 'type' => 'alert_box', 'layout' => 'vertical', 'alertBoxOptions' => [ 'style' => 'warning', 'content' => '<p>Will not load on touch-enabled devices like tablets and mobiles.</p>' ] ],
+				false,
+				false,
+				[],
+			),
+			],
+			[ 'type' => 'section' ],
+			false,
+			false,
+			[],
+		),
+		getPresetSection(
+			'EssentialElements\\spacing_margin_y',
+			'Spacing',
+			'spacing',
+			[ 'type' => 'popout' ]
+		),
+		];
+	}
 
-    static function settingsControls()
-    {
-        return [];
-    }
+	public static function contentControls() {
+		return [
+		c(
+			'media',
+			'Media',
+			[
+			c(
+				'default_media',
+				'Default Media',
+				[],
+				[ 'type' => 'wpmedia', 'layout' => 'vertical', 'mediaOptions' => [ 'acceptedFileTypes' => [ 'image', 'video' ], 'multiple' => false ] ],
+				false,
+				false,
+				[],
+			),
+			c(
+				'hover_media',
+				'Hover Media',
+				[],
+				[ 'type' => 'wpmedia', 'layout' => 'vertical', 'mediaOptions' => [ 'acceptedFileTypes' => [ 'image', 'video' ], 'multiple' => false ] ],
+				false,
+				false,
+				[],
+			),
+			c(
+				'size',
+				'Size',
+				[],
+				[ 'type' => 'media_size_dropdown', 'layout' => 'vertical' ],
+				false,
+				false,
+				[],
+			),
+			],
+			[ 'type' => 'section', 'layout' => 'vertical' ],
+			false,
+			false,
+			[],
+		),
+		c(
+			'distortion_map',
+			'Distortion Map',
+			[
+			c(
+				'default_distortions',
+				'Default Distortions',
+				[],
+				[ 'type' => 'dropdown', 'layout' => 'vertical', 'mediaOptions' => [ 'acceptedFileTypes' => [ 'image' ], 'multiple' => false ], 'condition' => [ 'path' => 'content.distortion_map.use_custom_distortion_image', 'operand' => 'is not set', 'value' => 'false' ], 'items' => [ [ 'value' => '1.jpg', 'text' => 'Distortion 1' ], [ 'value' => '2.jpg', 'text' => 'Distortion 2' ], [ 'value' => '3.jpg', 'text' => 'Distortion 3' ], [ 'value' => '4.jpg', 'text' => 'Distortion 4' ], [ 'value' => '5.jpg', 'text' => 'Distortion 5' ], [ 'value' => '6.jpg', 'text' => 'Distortion 6' ], [ 'value' => '7.jpg', 'text' => 'Distortion 7' ], [ 'value' => '8.jpg', 'text' => 'Distortion 8' ], [ 'value' => '9.jpg', 'text' => 'Distortion 9' ], [ 'value' => '10.jpg', 'text' => 'Distortion 10' ], [ 'value' => '11.jpg', 'text' => 'Distortion 11' ], [ 'value' => '12.jpg', 'text' => 'Distortion 12' ], [ 'value' => '13.jpg', 'text' => 'Distortion 13' ], [ 'value' => '14.jpg', 'text' => 'Distortion 14' ], [ 'value' => '15.jpg', 'text' => 'Distortion 15' ], [ 'value' => '16.jpg', 'text' => 'Distortion 16' ], [ 'value' => '17.jpg', 'text' => 'Distortion 17' ], [ 'value' => '18.jpg', 'text' => 'Distortion 18' ], [ 'value' => '19.jpg', 'text' => 'Distortion 19' ], [ 'value' => '20.jpg', 'text' => 'Distortion 20' ] ] ],
+				false,
+				false,
+				[],
+			),
+			c(
+				'use_custom_distortion_image',
+				'Use Custom Distortion Image',
+				[],
+				[ 'type' => 'toggle', 'layout' => 'vertical' ],
+				false,
+				false,
+				[],
+			),
+			c(
+				'custom_distortion_image',
+				'Custom Distortion Image',
+				[],
+				[ 'type' => 'wpmedia', 'layout' => 'vertical', 'mediaOptions' => [ 'acceptedFileTypes' => [ 'image' ], 'multiple' => false ], 'condition' => [ 'path' => 'content.distortion_map.use_custom_distortion_image', 'operand' => 'is set', 'value' => 'true' ] ],
+				false,
+				false,
+				[],
+			),
+			],
+			[ 'type' => 'section', 'layout' => 'vertical' ],
+			false,
+			false,
+			[],
+		),
+		c(
+			'distortion_effect',
+			'Distortion Effect',
+			[
+			c(
+				'distortion_angle',
+				'Distortion Angle',
+				[],
+				[ 'type' => 'dropdown', 'layout' => 'inline', 'items' => [ [ 'value' => '45', 'text' => 'Left' ], [ 'text' => 'Right', 'value' => '225' ], [ 'text' => 'Top', 'value' => '135' ], [ 'text' => 'Bottom', 'value' => '315' ], [ 'text' => 'Bottom Left', 'value' => '0' ], [ 'text' => 'Bottom Right', 'value' => '270' ], [ 'text' => 'Top Left', 'value' => '90' ], [ 'text' => 'Top Right', 'value' => '180' ] ] ],
+				false,
+				false,
+				[],
+			),
+			c(
+				'distortion_intensity',
+				'Distortion Intensity',
+				[],
+				[ 'type' => 'number', 'layout' => 'inline', 'rangeOptions' => [ 'min' => 0, 'max' => 1, 'step' => 0.1 ] ],
+				false,
+				false,
+				[],
+			),
+			c(
+				'hover_in_duration',
+				'Hover In Duration',
+				[],
+				[ 'type' => 'unit', 'layout' => 'inline', 'rangeOptions' => [ 'min' => 0, 'max' => 2, 'step' => 0.1 ], 'unitOptions' => [ 'types' => [ 's' ], 'defaultType' => 's' ] ],
+				false,
+				false,
+				[],
+			),
+			c(
+				'hover_out_duration',
+				'Hover Out Duration',
+				[],
+				[ 'type' => 'unit', 'layout' => 'inline', 'unitOptions' => [ 'types' => [ 's' ], 'defaultType' => 's' ], 'rangeOptions' => [ 'min' => 0, 'max' => 2, 'step' => 0.1 ] ],
+				false,
+				false,
+				[],
+			),
+			c(
+				'easing',
+				'Easing',
+				[],
+				[ 'type' => 'dropdown', 'layout' => 'inline', 'items' => [ [ 'value' => 'none', 'text' => 'Linear' ], [ 'text' => 'Power 1 In', 'value' => 'power1.in' ], [ 'text' => 'Power 1 Out', 'value' => 'power1.out' ], [ 'text' => 'Power 1 In Out', 'value' => 'power1.inOut' ], [ 'text' => 'Power 2 In', 'value' => 'power2.in' ], [ 'text' => 'Power 2 Out', 'value' => 'power2.out' ], [ 'text' => 'Power 2 In Out', 'value' => 'power2.inOut' ], [ 'text' => 'Power 3 In', 'value' => 'power3.in' ], [ 'text' => 'Power 3 Out', 'value' => 'power3.out' ], [ 'text' => 'Power 3 In Out', 'value' => 'power3.inOut' ], [ 'text' => 'Power 4 In', 'value' => 'power4.in' ], [ 'text' => 'Power 4 Out', 'value' => 'power4.out' ], [ 'text' => 'Power 4 In Out', 'value' => 'power4.inOut' ], [ 'text' => 'Expo In', 'value' => 'expo.in' ], [ 'text' => 'Expo Out', 'value' => 'expo.out' ], [ 'text' => 'Expo In Out', 'value' => 'expo.inOut' ], [ 'text' => 'Slow', 'value' => 'slow (0.7, 0.7, false)' ], [ 'text' => 'Circ In', 'value' => 'circ.in' ], [ 'text' => 'Circ Out', 'value' => 'circ.out' ], [ 'text' => 'Circ In Out', 'value' => 'circ.inOut' ], [ 'text' => 'Sine In', 'value' => 'sine.in' ], [ 'text' => 'Sine Out', 'value' => 'sine.out' ], [ 'text' => 'Sine In Out', 'value' => 'sine.inOut' ] ] ],
+				false,
+				false,
+				[],
+			),
+			],
+			[ 'type' => 'section', 'layout' => 'vertical' ],
+			false,
+			false,
+			[],
+		),
+		];
+	}
 
-    static function dependencies()
-    {
-        return ['0' =>  ['title' => 'Init Builder','inlineScripts' => ['( function() {
+	public static function settingsControls() {
+		return [];
+	}
+
+	public static function dependencies() {
+		return [
+		'0' => [
+		'title' => 'Init Builder',
+		'inlineScripts' => [
+		'( function() {
 
   const containerEl = document.querySelector(\'%%SELECTOR%%\');
 
@@ -337,7 +357,16 @@ class WebglMediaHoverDistortion extends \Breakdance\Elements\Element
 
 
 
-  }());'],'builderCondition' => 'return true;','frontendCondition' => 'return false;','scripts' => ['%%BREAKDANCE_REUSABLE_GSAP%%',ELEMENTS_HIVE_DIR . 'assets/js/utils/eh_instances_manager.js',ELEMENTS_HIVE_DIR . 'elements/WebGL_Media_Hover_Distortion/assets/js/eh_webgl_media_hover_effect.min.js'],],'1' =>  ['title' => 'Frontend init - without check for touch devices ','inlineScripts' => ['( function() {
+  }());',
+		],
+		'builderCondition' => 'return true;',
+		'frontendCondition' => 'return false;',
+		'scripts' => [ '%%BREAKDANCE_REUSABLE_GSAP%%', ELEMENTS_HIVE_DIR . 'assets/js/utils/eh_instances_manager.js', ELEMENTS_HIVE_DIR . 'elements/WebGL_Media_Hover_Distortion/assets/js/eh_webgl_media_hover_effect.min.js' ],
+		],
+		'1' => [
+		'title' => 'Frontend init - without check for touch devices ',
+		'inlineScripts' => [
+		'( function() {
 
 	const containerEl = document.querySelector(\'%%SELECTOR%%\');
 
@@ -387,17 +416,28 @@ class WebglMediaHoverDistortion extends \Breakdance\Elements\Element
     const instance = new EhWebglMediaHoverEffect(options);
 
 
-  }());'],'frontendCondition' => '{% set disableOnTouch = design.disable_on_touch_devices.enabled|default(false) %}
+  }());',
+		],
+		'frontendCondition' => '{% set disableOnTouch = design.disable_on_touch_devices.enabled|default(false) %}
 {% if disableOnTouch == false %}
 return true;
 {% else %}
 return false;
-{% endif %}','builderCondition' => 'return false;','scripts' => ['%%BREAKDANCE_REUSABLE_GSAP%%',ELEMENTS_HIVE_DIR . 'elements/WebGL_Media_Hover_Distortion/assets/js/eh_webgl_media_hover_effect.min.js'],],'2' =>  ['frontendCondition' => '{% set disableOnTouch = design.disable_on_touch_devices.enabled|default(false) %}
+{% endif %}',
+		'builderCondition' => 'return false;',
+		'scripts' => [ '%%BREAKDANCE_REUSABLE_GSAP%%', ELEMENTS_HIVE_DIR . 'elements/WebGL_Media_Hover_Distortion/assets/js/eh_webgl_media_hover_effect.min.js' ],
+		],
+		'2' => [
+		'frontendCondition' => '{% set disableOnTouch = design.disable_on_touch_devices.enabled|default(false) %}
 {% if disableOnTouch == true %}
 return true;
 {% else %}
 return false;
-{% endif %}','builderCondition' => 'return false;','title' => 'Frontend init - with check for touch devices ','inlineScripts' => ['( function() {
+{% endif %}',
+		'builderCondition' => 'return false;',
+		'title' => 'Frontend init - with check for touch devices ',
+		'inlineScripts' => [
+		'( function() {
 
   const containerEl = document.querySelector(\'%%SELECTOR%%\');
 
@@ -475,24 +515,27 @@ return false;
    }
 
   }());
-'],'scripts' => ['%%BREAKDANCE_REUSABLE_GSAP%%'],],];
-    }
+',
+		],
+		'scripts' => [ '%%BREAKDANCE_REUSABLE_GSAP%%' ],
+		],
+		];
+	}
 
-    static function settings()
-    {
-        return ['dependsOnGlobalScripts' => false];
-    }
+	public static function settings() {
+		return [ 'dependsOnGlobalScripts' => false ];
+	}
 
-    static function addPanelRules()
-    {
-        return false;
-    }
+	public static function addPanelRules() {
+		return false;
+	}
 
-    static public function actions()
-    {
-        return [
+	public static function actions() {
+		return [
 
-'onPropertyChange' => [['script' => '
+		'onPropertyChange' => [
+		[
+		'script' => '
 ( function() {
 
   if ( !window.EhInstancesManager.instanceExists(\'EhWebglMediaHoverEffect\', \'%%ID%%\') ) return
@@ -553,9 +596,12 @@ return false;
 
 }());
 ',
-],],
+		],
+		],
 
-'onMovedElement' => [['script' => '( function() {
+		'onMovedElement' => [
+		[
+		'script' => '( function() {
 
  if ( window.EhInstancesManager.instanceExists(\'EhWebglMediaHoverEffect\', \'%%ID%%\') ) {
  	window.EhInstancesManager.getInstance(\'EhWebglMediaHoverEffect\', \'%%ID%%\')?.destroy()
@@ -616,56 +662,48 @@ return false;
       window.EhInstancesManager.registerInstance(\'EhWebglMediaHoverEffect\', \'%%ID%%\', instance);
 }
 }());',
-],],];
-    }
+		],
+		],
+		];
+	}
 
-    static function nestingRule()
-    {
-        return ["type" => "final",   ];
-    }
+	public static function nestingRule() {
+		return [ 'type' => 'final' ];
+	}
 
-    static function spacingBars()
-    {
-        return [['cssProperty' => 'margin-top', 'location' => 'outside-top', 'affectedPropertyPath' => 'design.spacing.margin_top.%%BREAKPOINT%%'], ['cssProperty' => 'margin-bottom', 'location' => 'outside-bottom', 'affectedPropertyPath' => 'design.spacing.margin_bottom.%%BREAKPOINT%%']];
-    }
+	public static function spacingBars() {
+		return [ [ 'cssProperty' => 'margin-top', 'location' => 'outside-top', 'affectedPropertyPath' => 'design.spacing.margin_top.%%BREAKPOINT%%' ], [ 'cssProperty' => 'margin-bottom', 'location' => 'outside-bottom', 'affectedPropertyPath' => 'design.spacing.margin_bottom.%%BREAKPOINT%%' ] ];
+	}
 
-    static function attributes()
-    {
-        return false;
-    }
+	public static function attributes() {
+		return false;
+	}
 
-    static function experimental()
-    {
-        return false;
-    }
+	public static function experimental() {
+		return false;
+	}
 
-    static function order()
-    {
-        return 0;
-    }
+	public static function order() {
+		return 0;
+	}
 
-    static function dynamicPropertyPaths()
-    {
-        return [['accepts' => 'image_url', 'path' => 'content.media.default_media'], ['accepts' => 'image_url', 'path' => 'content.media.hover_media'], ['accepts' => 'image_url', 'path' => 'content.distortion_map.custom_distortion_image']];
-    }
+	public static function dynamicPropertyPaths() {
+		return [ [ 'accepts' => 'image_url', 'path' => 'content.media.default_media' ], [ 'accepts' => 'image_url', 'path' => 'content.media.hover_media' ], [ 'accepts' => 'image_url', 'path' => 'content.distortion_map.custom_distortion_image' ] ];
+	}
 
-    static function additionalClasses()
-    {
-        return false;
-    }
+	public static function additionalClasses() {
+		return false;
+	}
 
-    static function projectManagement()
-    {
-        return false;
-    }
+	public static function projectManagement() {
+		return false;
+	}
 
-    static function propertyPathsToWhitelistInFlatProps()
-    {
-        return ['design.media.width', 'design.media.height', 'content.media.image_scale'];
-    }
+	public static function propertyPathsToWhitelistInFlatProps() {
+		return [ 'design.media.width', 'design.media.height', 'content.media.image_scale' ];
+	}
 
-    static function propertyPathsToSsrElementWhenValueChanges()
-    {
-        return false;
-    }
+	public static function propertyPathsToSsrElementWhenValueChanges() {
+		return false;
+	}
 }

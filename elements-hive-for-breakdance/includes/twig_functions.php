@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\TwigFunctions;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use Breakdance\PluginsAPI;
 use Breakdance\Render;
 use function Breakdance\Render\replaceVariableInDependencies;
@@ -11,8 +15,8 @@ use function Breakdance\Render\replaceVariableInDependencies;
  */
 function getElementsHivePluginUrl() {
 	/**
-	  * @var string $ELEMENTS_HIVE_DIR
-	  */
+	 * @var string $ELEMENTS_HIVE_DIR
+	 */
 	$ELEMENTS_HIVE_DIR = ELEMENTS_HIVE_DIR;
 
 	return defined( 'ELEMENTS_HIVE_DIR' ) ? $ELEMENTS_HIVE_DIR : '';
@@ -24,4 +28,3 @@ function getElementsHivePluginUrl() {
 	'() => { return "' . getElementsHivePluginUrl() . '"; }',
 	true
 );
-

@@ -2,13 +2,17 @@
 
 namespace ElementsHiveForBreakdance\Extensions\Backgrounds\WebglSlideshow;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_actions', '\ElementsHiveForBreakdance\Extensions\Backgrounds\WebglSlideshow\addActions', 100, 1 );
 
 function addActions( $actions ) {
 	$actions[] = [
 		'onPropertyChange' => [
 			[
-				'script' => <<<JS
+				'script' => <<<'JS'
 					( function() {
 						if ('{{design.elements_hive.backgrounds.background_type}}' == 'webgl_slideshow' ) {
 							const containerEl = document.querySelector('%%SELECTOR%%')
@@ -62,7 +66,7 @@ function addActions( $actions ) {
 				'dependencies' => [
 					'design.elements_hive.backgrounds',
 					'design.fx_layers',
-				]
+				],
 			],
 		],
 	];

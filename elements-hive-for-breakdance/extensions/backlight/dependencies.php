@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\Backlight;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_dependencies', 'ElementsHiveForBreakdance\Extensions\Backlight\addDependencies', 100, 1 );
 
 /**
@@ -9,7 +13,7 @@ add_filter( 'breakdance_element_dependencies', 'ElementsHiveForBreakdance\Extens
  * @return ElementDependenciesAndConditions[]
  */
 function addDependencies( $deps ) {
-	$condition = "return {{design.elements_hive.backlight.enabled == true ? true : false}};";
+	$condition = 'return {{design.elements_hive.backlight.enabled == true ? true : false}};';
 	$deps[] = [
 		'frontendCondition' => $condition,
 		'builderCondition' => $condition,
@@ -30,12 +34,9 @@ function addDependencies( $deps ) {
 					`;
 					document.body.append(svg);
 				})();
-			'
+			',
 		],
 	];
-
-
-
 
 	return $deps;
 }

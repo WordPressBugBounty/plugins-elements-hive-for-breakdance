@@ -2,4 +2,8 @@
 
 namespace ElementsHiveForBreakdance\BuilderTricks;
 
-require_once __DIR__ . "/builder_tricks.php";
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+require_once __DIR__ . '/builder_tricks.php';

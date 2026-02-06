@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\Backgrounds\WebglFluid;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_dependencies', 'ElementsHiveForBreakdance\Extensions\Backgrounds\WebglFluid\addDependencies', 100, 1 );
 
 /**

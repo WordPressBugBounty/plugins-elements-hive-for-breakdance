@@ -2,13 +2,17 @@
 
 namespace ElementsHiveForBreakdance\Extensions\MouseCursors\InkMouseCursor;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_actions', '\ElementsHiveForBreakdance\Extensions\MouseCursors\InkMouseCursor\addActions', 100, 1 );
 
 function addActions( $actions ) {
 	$actions[] = [
 		'onPropertyChange' => [
 			[
-				'script' => <<<JS
+				'script' => <<<'JS'
 					( function() {
 						if ( '{{design.elements_hive.mouse_cursors.cursor_type}}' == 'ink_cursor' ) {
 							const containerElement = document.querySelector('%%SELECTOR%%')

@@ -1,8 +1,8 @@
 === Elements Hive for Breakdance ===
 Contributors: elementshive
 Tags: breakdance, webgl, threejs, interaction, animation
-Tested up to: 6.8.2
-Stable tag: 1.5.0
+Tested up to: 6.8.3
+Stable tag: 1.6.0
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -24,108 +24,73 @@ Every element and extension seamlessly integrates with the *Breakdance Editor*, 
 
 - **Elements:** The most familiar construct in Breakdance, Elements can be added via the Add Panel. 
 
-- **Extensions:** Elements Hive is the only add-on to offer features in the form of Extensions that extend pre-existing elements with additional features, offering a faster prototyping experience and workflow.
+- **Extensions:** Elements Hive is the only Breakdance add-on to offer features in the form of Extensions that extend pre-existing elements with additional features, offering a faster prototyping experience and workflow.
 
 - **EH Tricks:** a set of non-intrusive Quality of Life Improvements that enhances the Breakdance builder.
 
 **[See the current list of elements and extensions for both the Free and Pro versions of Elements Hive](https://elementshive.com)**
 
-**The FREE version contains 18+ versatile Elements, Extensions and Growing**
+What's inside the Free version?
 
-**WebGL Fluid Simulation** 
+**Elements**
 
-- Create immersive interactive WebGL Fluid Simulation effects that respond to user interaction.
+- **WebGL Slideshow:** A WebGL-powered Slideshow element featuring various unique and captivating effects.
 
-**Marquee Container** 
+- **Marquee Container:** A versatile and lightweight marquee that lets you transform any combination of elements into a smooth, animated marquee display.
 
-- Transform any combination of elements into a smooth, animated marquee display.
+- **Orbiting Icons:** Create an arbitrary number of animated orbites with custom icons.
 
-**Orbiting Icons** 
+- **Link Media Reveal:** Interactively reveal an image or video on link hover using buttery-smooth animations.
 
-- Create an arbitrary number of animated orbites containing custom icons.
+- **Glue Button:** A button element that implement a sticky/magnetic effect.
 
-**WebGL Slideshow Element**
+- **WebGL Media Hover Distortion:** Generate stunning WebGL distortion effects between two media elements on user interaction.
 
-- A WebGL-powered Slideshow element featuring various unique and captivating effects.
+- **Gooey Link:** An interactive link element that morphs two text elements using a gooey effect.
 
-**Edge Mask Extension** 
+- **On Scroll Color Switcher:** Dynamically change page background and text colors based on scroll position for engaging and dynamic visual feedback.
 
-- Easily blend any element with the background of its container.
+- **Glue Menu Button:** A Glue Buttom element for use inside the Breakdance Menu Builder.
 
-**Link Media Reveal**
+- **Gooey Menu Link:** A Gooey Link element for use inside the Breakdance Menu Builder.
 
-- Interactively reveal an image or video on link hover.
-
-**Glue Button**
-
-- A button element that implements a sticky effect on user interaction.
-
-**WebGL Media Hover Distortion** 
-
-- Generate stunning WebGL distortion effects between two media elements on user interaction.
-
-**Magnetic Cursor** 
-
-- Transform your cursor into an intelligent magnet that elegantly wraps around links, buttons, or any element you designate.
-
-**Gooey Link** 
-
-- An interactive link element that morphs two text elements using a gooey effect .
-
-**On Scroll Color Switcher** 
-
-- Dynamically change page background and text colors based on scroll position for engaging visual feedback.
-
-**WebGL Kinetic Typography** 
-
-- A DIY background extension to craft your own mesmerizing interactive 3D backgrounds.
-
-**Glue Menu Button**
-
-- A Glue Buttom element for use inside the Breakdance Menu Builder.
-
-**Gooey Menu Link**
-
-- A Gooey Link element for use inside the Breakdance Menu Builder.
-
-**Link Media Reveal Menu**
-
-- A Link Media Reveal element for use inside the Breakdance Menu Builder.
-
-**Backlight Extension** 
-
-- Apply natural shadow effects that intelligently adapt to your element's colors for enhanced depth and visual appeal.
-
-**Ink Mouse Cursor** 
-
-- Morph your cursor into a fluid, ink-like animation with multiple styles
-
-**WebGL Slideshow Extension**
-
-- A WebGL-powered Slideshow extension featuring various unique and captivating effects.
+- **Link Media Reveal Menu:** A Link Media Reveal element for use inside the Breakdance Menu Builder.
 
 
-**EH Tricks** Quality of Life Improvements for Breakdance includes:
+**Extensions**
 
-**Elements Inspector**
+- **Cloudflare Turnstile for Breakdance Forms:** Protect your Breakdance forms from bots using Cloudflare Turnstile, a lightweight alternative to Google's reCAPTCHA.
 
-- Quickly inspect Tag, ID and Classes applied to elements
+- **WebGL Fluid:** Background extension to create immersive interactive WebGL Fluid Simulation effects that respond to user interaction. 
 
-**Elements Panel**
+- **Edge Mask:** Easily blend any element with the background of its container.
 
-- Enhance readability of elements with long names
+- **Magnetic Cursor:** Transform your cursor into an intelligent magnet that elegantly wraps around links, buttons, or any element you designate.
 
-**Selector Panel** 
+- **WebGL Kinetic Typography:** A DIY background extension to craft your own mesmerizing interactive 3D backgrounds.
 
-- Selectors labels are fully visible
+- **Backlight Extension:** Apply natural shadow effects that intelligently adapt to your element's colors for enhanced depth and visual appeal.
 
-**Code Editor Dialog**
+- **Ink Mouse Cursor:** Morph your cursor into a fluid, ink-like animation with multiple styles
 
-- Window Docking helper action buttons
-- Breakdance Global Colors helper action buttons
-- Resizable window
-- Draggable window
-- Transparent Overlay so you can see your changes in real time when in dialog mode
+- **WebGL Slideshow** A WebGL-powered Slideshow background extension featuring various unique and captivating effects.
+
+
+**EH Tricks** 
+
+- **Elements Inspector:** Quickly inspect and copy Tag, ID and Classes applied to any element
+
+- **Elements Panel:** Enhance readability of elements with long names
+
+- **Selector Panel:** Selectors labels are fully visible
+
+- **Code Editor Dialog:**
+
+    - Window Docking helper action buttons
+    - Breakdance Global Colors helper action buttons
+    - Resizable window
+    - Draggable window
+    - Transparent Overlay so you can see your changes in real time when in dialog mode
 
 == Installation ==
 
@@ -150,6 +115,10 @@ of each extension contains information about the supported elements and where to
 == Changelog ==
 
 **Changelog**
+
+= 1.6.0 =
+* New: Cloudflare Turnstile for Breakdance Forms
+* Fix: PHP 8.3> get_class deprecation notice
 
 = 1.5.0 - 16/06/2025 = 
 * New: Orbiting Icons element

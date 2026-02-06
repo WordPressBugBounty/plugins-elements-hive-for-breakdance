@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\MouseCursors\MagneticMouseCursor;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_css_template', 'ElementsHiveForBreakdance\Extensions\MouseCursors\MagneticMouseCursor\addStyles', 100, 1 );
 
 /**

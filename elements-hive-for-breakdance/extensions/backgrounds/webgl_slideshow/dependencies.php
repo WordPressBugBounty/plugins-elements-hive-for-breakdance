@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\Backgrounds\WebglSlideshow;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_dependencies', 'ElementsHiveForBreakdance\Extensions\Backgrounds\WebglSlideshow\addDependencies', 100, 1 );
 
 /**

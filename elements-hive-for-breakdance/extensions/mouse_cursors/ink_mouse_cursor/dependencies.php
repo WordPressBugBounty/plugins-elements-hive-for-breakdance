@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\MouseCursors\InkMouseCursor;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_dependencies', 'ElementsHiveForBreakdance\Extensions\MouseCursors\InkMouseCursor\addDependencies', 100, 1 );
 
 /**

@@ -14,37 +14,34 @@
  * License: GPLv3+
  * Text Domain: elementshive
  * Domain Path: /languages/
- * Version: 1.5.0
+ * Version: 1.6.0
  */
 
-defined( 'ABSPATH' ) or die( 'you do not have access to this page!' );
-
-
-if (!function_exists('is_plugin_active')) {
-    include_once ABSPATH . 'wp-admin/includes/plugin.php';
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 $breakdance_file = WP_PLUGIN_DIR . '/breakdance/plugin.php';
-$breakdance_exists = file_exists($breakdance_file);
+$breakdance_exists = file_exists( $breakdance_file );
 
-if( !$breakdance_exists || !is_plugin_active('breakdance/plugin.php')) {
-	deactivate_plugins(plugin_basename(__FILE__));
+if ( ! $breakdance_exists || ! is_plugin_active( 'breakdance/plugin.php' ) ) {
+	deactivate_plugins( plugin_basename( __FILE__ ) );
 
 	// Add admin notice
-	add_action('admin_notices', function() {
+	add_action('admin_notices', function () {
 		echo '<div class="error"><p>Elements Hive requires Breakdance to function properly. Elements Hive has been deactivated. Please install and activate Breakdance, then reactivate Elements Hive.</p></div>';
 	});
 
 	// If this is a plugin activation request, stop it
-	if (isset($_GET['activate'])) {
-		unset($_GET['activate']);
+	if ( isset( $_GET['activate'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		unset( $_GET['activate'] );
 	}
 
 	return false;
 }
 
 
-if(!class_exists('EHForBreakdance')) {
+if ( ! class_exists( 'EHForBreakdance' ) ) {
 
 	class EHForBreakdance {
 
@@ -52,8 +49,7 @@ if(!class_exists('EHForBreakdance')) {
 
 			define( 'ELEMENTS_HIVE_DIR', plugin_dir_url( __FILE__ ) );
 
-			define( 'ELEMENTS_HIVE_ASSETS_DIR', plugin_dir_url( __FILE__ ) . 'assets/'  );
-
+			define( 'ELEMENTS_HIVE_ASSETS_DIR', plugin_dir_url( __FILE__ ) . 'assets/' );
 		}
 
 		/**
@@ -63,13 +59,15 @@ if(!class_exists('EHForBreakdance')) {
 		 */
 		public function initialize() {
 
-
-			add_action('breakdance_loaded', function() { $this->breakdance_loaded_handler(); }, 9);
+			add_action( 'breakdance_loaded', function () {
+				$this->breakdance_loaded_handler();
+			}, 9 );
 
 			// $this->appsero_init_tracker_elements_hive_for_breakdance();
 
-			add_action('init', function () { $this->appsero_init_tracker_elements_hive_for_breakdance();}, 10);
-
+			add_action( 'init', function () {
+				$this->appsero_init_tracker_elements_hive_for_breakdance();
+			}, 10 );
 		}
 
 		/**
@@ -80,14 +78,13 @@ if(!class_exists('EHForBreakdance')) {
 		private function appsero_init_tracker_elements_hive_for_breakdance() {
 
 			if ( ! class_exists( 'Appsero\Client' ) ) {
-			  require_once __DIR__ . '/includes/lib/appsero/src/Client.php';
+				require_once __DIR__ . '/includes/lib/appsero/src/Client.php';
 			}
 
 			$client = new Appsero\Client( '7e7ade80-f6ed-4b5a-8ddc-484611ef8658', 'Elements Hive for Breakdance', __FILE__ );
 
 			// Active insights
 			$client->insights()->init();
-
 		}
 
 		/**
@@ -130,7 +127,6 @@ if(!class_exists('EHForBreakdance')) {
 		private function register_plugin_categories() {
 
 			\Breakdance\Elements\ElementCategoriesController::getInstance()->registerCategory( 'elements_hive', 'Elements Hive' );
-
 		}
 
 		private function breakdance_loaded_handler() {
@@ -147,8 +143,10 @@ if(!class_exists('EHForBreakdance')) {
 
 			require_once __DIR__ . '/includes/builder-tricks/base.php';
 
-		}
+			require_once __DIR__ . '/includes/cloudflare-turnstile/base.php';
 
+			require_once __DIR__ . '/admin/base.php';
+		}
 	}
 
 	$EhInstance = new EHForBreakdance();

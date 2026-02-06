@@ -2,13 +2,17 @@
 
 namespace ElementsHiveForBreakdance\Extensions\MouseCursors\MagneticMouseCursor;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_actions', '\ElementsHiveForBreakdance\Extensions\MouseCursors\MagneticMouseCursor\addActions', 100, 1 );
 
 function addActions( $actions ) {
 	$actions[] = [
 		'onPropertyChange' => [
 			[
-				'script' => <<<JS
+				'script' => <<<'JS'
 					( function() {
 						if ( '{{design.elements_hive.mouse_cursors.cursor_type}}' == 'magnetic_cursor' ) {
 							const isTouchDevice = "ontouchstart" in window ? true : false

@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class LinkMediaRevealMenu extends \ElementsHiveForBreakdance\LinkMediaReveal {
 
 	public static function name() {
@@ -9,11 +13,10 @@ class LinkMediaRevealMenu extends \ElementsHiveForBreakdance\LinkMediaReveal {
 	}
 
 	public static function slug() {
-		return get_class();
+		return __CLASS__;
 	}
 
 	public static function nestingRule() {
-		return ['type' => 'final', 'restrictedToBeADirectChildOf' => [ 'EssentialElements\MenuBuilder' ] ];
+		return [ 'type' => 'final', 'restrictedToBeADirectChildOf' => [ 'EssentialElements\MenuBuilder' ] ];
 	}
-
 }

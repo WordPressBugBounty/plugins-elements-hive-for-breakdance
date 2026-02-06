@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use function Breakdance\Elements\control;
 use function Breakdance\Elements\controlSection;
 
@@ -44,8 +48,28 @@ function addControls( $controls, $element ) {
 		);
 	}
 
+	/** Cloudflare Turnstile */
+	if ( get_option( 'eh_turnstile_breakdance_enabled' ) && 'yes' === get_option( 'eh_turnstile_verified' ) ) {
+
+		/** Breakdance Forms */
+		if ( 'EssentialElements\\FormBuilder' === $slug ||
+			'EssentialElements\\LoginForm' === $slug ||
+			'EssentialElements\\RegisterForm' === $slug ||
+			'EssentialElements\\ForgotPasswordForm' === $slug
+			) {
+
+			$controls['contentSections'][] = controlSection(
+				'cloudflare_turnstile',
+				'Cloudflare Turnstile',
+				[
+						...\ElementsHiveForBreakdance\Extensions\Forms\CloudflareTurnstile\controls(),
+					],
+				[ 'isExternal' => true ],
+				'popout'
+			);
+		}
+	}
+
 	/** @var Control[] $controls */
 	return $controls;
 }
-
-

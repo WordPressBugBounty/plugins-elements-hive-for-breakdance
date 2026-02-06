@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\EdgeMask;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_css_template', 'ElementsHiveForBreakdance\Extensions\EdgeMask\addStyles', 100, 1 );
 
 /**
@@ -9,7 +13,7 @@ add_filter( 'breakdance_element_css_template', 'ElementsHiveForBreakdance\Extens
  * @return string
  */
 function addStyles( $css_template ) {
-  
+
 	return $css_template . "\n\n" . '
         %%SELECTOR%% {
             --edge-mask-radial-fade-size: {{ design.elements_hive.edge_mask.mask_size.style }};

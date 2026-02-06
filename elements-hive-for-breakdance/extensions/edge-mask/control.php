@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\EdgeMask;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use function Breakdance\Elements\control;
 use function Breakdance\Elements\controlSection;
 
@@ -29,17 +33,17 @@ function controls() {
 					'type' => 'button_bar',
 					'layout' => 'inline',
 					'items' => [
-						['value' => 'linear', 'text' => 'Linear', 'icon' => 'BarsIcon'],
-						['value' => 'radial', 'text' => 'Radial', 'icon' => 'CircleIcon'],
+						[ 'value' => 'linear', 'text' => 'Linear', 'icon' => 'BarsIcon' ],
+						[ 'value' => 'radial', 'text' => 'Radial', 'icon' => 'CircleIcon' ],
 					],
 					'condition' => [
-						'0' => [ 
+						'0' => [
 							'0' => [
-								'path' => '%%CURRENTPATH%%.enabled', 
-								'operand' => 'equals', 
-								'value' => true
-							] 
-						] 
+								'path' => '%%CURRENTPATH%%.enabled',
+								'operand' => 'equals',
+								'value' => true,
+							],
+						],
 					],
 				]
 			),
@@ -55,18 +59,18 @@ function controls() {
 						'step' => 1,
 					],
 					'condition' => [
-						'0' => [ 
+						'0' => [
 							'0' => [
-								'path' => '%%CURRENTPATH%%.enabled', 
-								'operand' => 'equals', 
-								'value' => true
+								'path' => '%%CURRENTPATH%%.enabled',
+								'operand' => 'equals',
+								'value' => true,
 							],
 							'1' => [
-								'path' => '%%CURRENTPATH%%.style', 
-								'operand' => 'equals', 
-								'value' => 'radial'
+								'path' => '%%CURRENTPATH%%.style',
+								'operand' => 'equals',
+								'value' => 'radial',
 							],
-						] 
+						],
 					],
 				],
 				true
@@ -78,20 +82,22 @@ function controls() {
 					'type' => 'button_bar',
 					'layout' => 'inline',
 					'items' => [
-						['value' => 'horizontal', 'text' => 'Horizontal', 'icon' => 'LeftAndRightArrowsIcon'], 
-						['value' => 'vertical', 'text' => 'Vertical', 'icon' => 'UpAndDownArrowsIcon']
+						[ 'value' => 'horizontal', 'text' => 'Horizontal', 'icon' => 'LeftAndRightArrowsIcon' ],
+						[ 'value' => 'vertical', 'text' => 'Vertical', 'icon' => 'UpAndDownArrowsIcon' ],
 					],
 					'condition' => [
-						'0' => [ 
+						'0' => [
 							'0' => [
-								'path' => '%%CURRENTPATH%%.enabled', 
-								'operand' => 'equals', 
-								'value' => true],
+								'path' => '%%CURRENTPATH%%.enabled',
+								'operand' => 'equals',
+								'value' => true,
+							],
 							'1' => [
-								'path' => '%%CURRENTPATH%%.style', 
-								'operand' => 'equals', 
-								'value' => 'linear']
-						] 
+								'path' => '%%CURRENTPATH%%.style',
+								'operand' => 'equals',
+								'value' => 'linear',
+							],
+						],
 					],
 				],
 			),
@@ -107,23 +113,23 @@ function controls() {
 						'step' => 1,
 					],
 					'condition' => [
-						'0' => [ 
+						'0' => [
 							'0' => [
-								'path' => '%%CURRENTPATH%%.enabled', 
-								'operand' => 'equals', 
-								'value' => true
+								'path' => '%%CURRENTPATH%%.enabled',
+								'operand' => 'equals',
+								'value' => true,
 							],
 							'1' => [
-								'path' => '%%CURRENTPATH%%.style', 
-								'operand' => 'equals', 
-								'value' => 'linear'
+								'path' => '%%CURRENTPATH%%.style',
+								'operand' => 'equals',
+								'value' => 'linear',
 							],
 							'2' => [
-								'path' => '%%CURRENTPATH%%.axis', 
-								'operand' => 'equals', 
-								'value' => 'vertical'
+								'path' => '%%CURRENTPATH%%.axis',
+								'operand' => 'equals',
+								'value' => 'vertical',
 							],
-						] 
+						],
 					],
 				],
 				true
@@ -140,23 +146,23 @@ function controls() {
 						'step' => 1,
 					],
 					'condition' => [
-						'0' => [ 
+						'0' => [
 							'0' => [
-								'path' => '%%CURRENTPATH%%.enabled', 
-								'operand' => 'equals', 
-								'value' => true
+								'path' => '%%CURRENTPATH%%.enabled',
+								'operand' => 'equals',
+								'value' => true,
 							],
 							'1' => [
-								'path' => '%%CURRENTPATH%%.style', 
-								'operand' => 'equals', 
-								'value' => 'linear'
+								'path' => '%%CURRENTPATH%%.style',
+								'operand' => 'equals',
+								'value' => 'linear',
 							],
 							'2' => [
-								'path' => '%%CURRENTPATH%%.axis', 
-								'operand' => 'equals', 
-								'value' => 'vertical'
+								'path' => '%%CURRENTPATH%%.axis',
+								'operand' => 'equals',
+								'value' => 'vertical',
 							],
-						] 
+						],
 					],
 				],
 				true
@@ -173,23 +179,23 @@ function controls() {
 						'step' => 1,
 					],
 					'condition' => [
-						'0' => [ 
+						'0' => [
 							'0' => [
-								'path' => '%%CURRENTPATH%%.enabled', 
-								'operand' => 'equals', 
-								'value' => true
+								'path' => '%%CURRENTPATH%%.enabled',
+								'operand' => 'equals',
+								'value' => true,
 							],
 							'1' => [
-								'path' => '%%CURRENTPATH%%.style', 
-								'operand' => 'equals', 
-								'value' => 'linear'
+								'path' => '%%CURRENTPATH%%.style',
+								'operand' => 'equals',
+								'value' => 'linear',
 							],
 							'2' => [
-								'path' => '%%CURRENTPATH%%.axis', 
-								'operand' => 'equals', 
-								'value' => 'horizontal'
+								'path' => '%%CURRENTPATH%%.axis',
+								'operand' => 'equals',
+								'value' => 'horizontal',
 							],
-						] 
+						],
 					],
 				],
 				true
@@ -206,23 +212,23 @@ function controls() {
 						'step' => 1,
 					],
 					'condition' => [
-						'0' => [ 
+						'0' => [
 							'0' => [
-								'path' => '%%CURRENTPATH%%.enabled', 
-								'operand' => 'equals', 
-								'value' => true
+								'path' => '%%CURRENTPATH%%.enabled',
+								'operand' => 'equals',
+								'value' => true,
 							],
 							'1' => [
-								'path' => '%%CURRENTPATH%%.style', 
-								'operand' => 'equals', 
-								'value' => 'linear'
+								'path' => '%%CURRENTPATH%%.style',
+								'operand' => 'equals',
+								'value' => 'linear',
 							],
 							'2' => [
-								'path' => '%%CURRENTPATH%%.axis', 
-								'operand' => 'equals', 
-								'value' => 'horizontal'
+								'path' => '%%CURRENTPATH%%.axis',
+								'operand' => 'equals',
+								'value' => 'horizontal',
 							],
-						] 
+						],
 					],
 				],
 				true
@@ -232,4 +238,3 @@ function controls() {
 		'popout'
 	);
 }
-

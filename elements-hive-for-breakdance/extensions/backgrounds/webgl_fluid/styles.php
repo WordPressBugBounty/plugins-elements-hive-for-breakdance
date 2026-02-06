@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\Backgrounds\WebglFluid;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_css_template', 'ElementsHiveForBreakdance\Extensions\Backgrounds\WebglFluid\addStyles', 100, 1 );
 
 /**

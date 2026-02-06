@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\Backgrounds\WebglKineticTypography;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_dependencies', 'ElementsHiveForBreakdance\Extensions\Backgrounds\WebglKineticTypography\addDependencies', 100, 1 );
 
 /**

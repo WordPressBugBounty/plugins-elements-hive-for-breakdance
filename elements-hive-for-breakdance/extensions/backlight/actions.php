@@ -2,13 +2,17 @@
 
 namespace ElementsHiveForBreakdance\Extensions\Backlight;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_actions', '\ElementsHiveForBreakdance\Extensions\Backlight\addActions', 100, 1 );
 
 function addActions( $actions ) {
 	$actions[] = [
 		'onPropertyChange' => [
 			[
-				'script' => <<<JS
+				'script' => <<<'JS'
 					( function() {
 						if ( "{{design.elements_hive.backlight.enabled}}" == "false" ) return
 						document.querySelector("#eh-backlight-%%ID%%")?.remove();
@@ -27,7 +31,7 @@ function addActions( $actions ) {
 						document.body.append(svg);
 					})();
 				JS,
-				'dependencies' => ['design.elements_hive.backlight']
+				'dependencies' => [ 'design.elements_hive.backlight' ],
 			],
 		],
 	];

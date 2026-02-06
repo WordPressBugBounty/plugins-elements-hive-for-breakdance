@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\Backgrounds;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use function Breakdance\Elements\control;
 use function Breakdance\Elements\controlSection;
 
@@ -21,9 +25,9 @@ function controls() {
 					'type' => 'dropdown',
 					'layout' => 'inline',
 					'items' => [
-						'0' => ['text' => 'WebGL Fluid', 'value' => 'webgl_fluid'],
-						'1' => ['text' => 'WebGL Slideshow', 'value' => 'webgl_slideshow'],
-						'2' => ['text' => 'WebGL Kinetic Typography', 'value' => 'webgl_kinetic_typography'],
+						'0' => [ 'text' => 'WebGL Fluid', 'value' => 'webgl_fluid' ],
+						'1' => [ 'text' => 'WebGL Slideshow', 'value' => 'webgl_slideshow' ],
+						'2' => [ 'text' => 'WebGL Kinetic Typography', 'value' => 'webgl_kinetic_typography' ],
 					],
 				],
 			),
@@ -35,4 +39,3 @@ function controls() {
 		'popout'
 	);
 }
-

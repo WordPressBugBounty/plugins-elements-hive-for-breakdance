@@ -2,13 +2,17 @@
 
 namespace ElementsHiveForBreakdance\Extensions\Backgrounds\WebglKineticTypography;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'breakdance_element_actions', '\ElementsHiveForBreakdance\Extensions\Backgrounds\WebglKineticTypography\addActions', 100, 1 );
 
 function addActions( $actions ) {
 	$actions[] = [
 		'onPropertyChange' => [
 			[
-				'script' => <<<JS
+				'script' => <<<'JS'
 					( function() {
 						if ('{{design.elements_hive.backgrounds.background_type}}' == 'webgl_kinetic_typography' ) {
 							const containerEl = document.querySelector('%%SELECTOR%%');
@@ -38,15 +42,15 @@ function addActions( $actions ) {
 					}());
 				JS,
 				'dependencies' => [
-					'design.elements_hive.backgrounds'
-				]
+					'design.elements_hive.backgrounds',
+				],
 			],
 		],
 	];
 	$actions[] = [
 		'onPropertyChange' => [
 			[
-				'script' => <<<JS
+				'script' => <<<'JS'
 					( function() {
 						if ('{{design.elements_hive.backgrounds.background_type}}' == 'webgl_kinetic_typography' ) {
 							const settings = {{design.elements_hive.backgrounds.webgl_kinetic_typography|json_encode}} ?? {};
@@ -91,8 +95,8 @@ function addActions( $actions ) {
 					}());
 				JS,
 				'dependencies' => [
-					'design.fx_layers'
-				]
+					'design.fx_layers',
+				],
 			],
 		],
 	];

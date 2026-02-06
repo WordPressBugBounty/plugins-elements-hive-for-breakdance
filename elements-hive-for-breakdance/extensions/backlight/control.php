@@ -2,6 +2,10 @@
 
 namespace ElementsHiveForBreakdance\Extensions\Backlight;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use function Breakdance\Elements\control;
 use function Breakdance\Elements\controlSection;
 
@@ -33,7 +37,7 @@ function controls() {
 						'max' => 20,
 						'step' => 1,
 					],
-					'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enabled', 'operand' => 'equals', 'value' => true] ] ],
+					'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enabled', 'operand' => 'equals', 'value' => true ] ] ],
 				],
 			),
 			control(
@@ -47,7 +51,7 @@ function controls() {
 						'max' => 4,
 						'step' => 0.1,
 					],
-					'condition' => ['0' => [ '0' => ['path' => '%%CURRENTPATH%%.enabled', 'operand' => 'equals', 'value' => true] ] ],
+					'condition' => [ '0' => [ '0' => [ 'path' => '%%CURRENTPATH%%.enabled', 'operand' => 'equals', 'value' => true ] ] ],
 				],
 			),
 		],
@@ -55,4 +59,3 @@ function controls() {
 		'popout'
 	);
 }
-
