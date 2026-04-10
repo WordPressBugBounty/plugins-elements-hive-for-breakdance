@@ -12,6 +12,105 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * @param array $form Form settings.
+ * @return array<string, mixed>
+ */
+function get_turnstile_settings( $form ) {
+	return isset( $form['cloudflare_turnstile'] ) && is_array( $form['cloudflare_turnstile'] ) ? $form['cloudflare_turnstile'] : [];
+}
+
+/**
+ * @param array|null $form Form settings.
+ * @return bool
+ */
+function has_custom_turnstile_key_source( $form = null ) {
+	if ( ! is_array( $form ) ) {
+		return false;
+	}
+
+	$settings = get_turnstile_settings( $form );
+
+	return 'custom' === ( $settings['api_key_source'] ?? 'default' );
+}
+
+/**
+ * @param array|null $form Form settings.
+ * @return bool
+ */
+function should_use_custom_turnstile_keys( $form = null ) {
+	if ( ! has_custom_turnstile_key_source( $form ) ) {
+		return false;
+	}
+
+	$secret_key = get_form_turnstile_secret_key( $form );
+	$site_key = get_form_turnstile_site_key( $form );
+
+	return '' !== $secret_key && '' !== $site_key;
+}
+
+/**
+ * @param array|null $form Form settings.
+ * @return string
+ */
+function get_form_turnstile_site_key( $form = null ) {
+	if ( ! has_custom_turnstile_key_source( $form ) ) {
+		return '';
+	}
+
+	$settings = get_turnstile_settings( $form );
+
+	if ( isset( $settings['site_key'] ) ) {
+		return trim( (string) $settings['site_key'] );
+	}
+
+	$api_key_input = isset( $settings['api_key_input'] ) && is_array( $settings['api_key_input'] ) ? $settings['api_key_input'] : [];
+	return isset( $api_key_input['apiUrl'] ) ? trim( (string) $api_key_input['apiUrl'] ) : '';
+}
+
+/**
+ * @param array|null $form Form settings.
+ * @return string
+ */
+function get_turnstile_site_key( $form = null ) {
+	if ( should_use_custom_turnstile_keys( $form ) ) {
+		return get_form_turnstile_site_key( $form );
+	}
+
+	return trim( (string) get_option( 'eh_turnstile_site_key', '' ) );
+}
+
+/**
+ * @param array|null $form Form settings.
+ * @return string
+ */
+function get_form_turnstile_secret_key( $form = null ) {
+	if ( ! has_custom_turnstile_key_source( $form ) ) {
+		return '';
+	}
+
+	$settings = get_turnstile_settings( $form );
+
+	if ( isset( $settings['secret_key'] ) ) {
+		return trim( (string) $settings['secret_key'] );
+	}
+
+	$api_key_input = isset( $settings['api_key_input'] ) && is_array( $settings['api_key_input'] ) ? $settings['api_key_input'] : [];
+	return isset( $api_key_input['apiKey'] ) ? trim( (string) $api_key_input['apiKey'] ) : '';
+}
+
+/**
+ * @param array|null $form Form settings.
+ * @return string
+ */
+function get_turnstile_secret_key( $form = null ) {
+	if ( should_use_custom_turnstile_keys( $form ) ) {
+		return get_form_turnstile_secret_key( $form );
+	}
+
+	return trim( (string) get_option( 'eh_turnstile_secret_key', '' ) );
+}
+
+/**
  * Verify Turnstile token with Cloudflare API
  *
  * @param string $token Turnstile response token.
@@ -20,7 +119,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function verify_token( $token, $secret_key = null ) {
 
-	$secret = ! empty( $secret_key ) ? $secret_key : get_option( 'eh_turnstile_secret_key' );
+	$secret = ! empty( $secret_key ) ? trim( (string) $secret_key ) : get_turnstile_secret_key();
 
 	if ( empty( $secret ) ) {
 		return [
@@ -36,16 +135,14 @@ function verify_token( $token, $secret_key = null ) {
 		];
 	}
 
-	// Make request to Cloudflare API
-	$response = wp_remote_post('https://challenges.cloudflare.com/turnstile/v0/siteverify', [
+	$response = wp_remote_post( 'https://challenges.cloudflare.com/turnstile/v0/siteverify', [
 		'body' => [
 			'secret' => $secret,
 			'response' => $token,
 		],
 		'timeout' => 10,
-	]);
+	] );
 
-	// Check for WordPress errors
 	if ( is_wp_error( $response ) ) {
 		return [
 			'success' => false,
@@ -53,11 +150,8 @@ function verify_token( $token, $secret_key = null ) {
 		];
 	}
 
-	// Parse response
 	$body = wp_remote_retrieve_body( $response );
 	$result = json_decode( $body, true );
-
-	
 
 	if ( ! is_array( $result ) ) {
 		return [

@@ -1,8 +1,8 @@
 === Elements Hive for Breakdance ===
 Contributors: elementshive
 Tags: breakdance, webgl, threejs, interaction, animation
-Tested up to: 6.8.3
-Stable tag: 1.6.0
+Tested up to: 6.9.4
+Stable tag: 1.7.1
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -115,6 +115,16 @@ of each extension contains information about the supported elements and where to
 == Changelog ==
 
 **Changelog**
+
+= 1.7.1 =
+Fix: WebGl Fluid, update dependecy call
+
+= 1.7.0 =
+Enhancement: Cloudflare Turnstile, add per-form api keys
+Enhancement: Cloudflare Turnstile, add submit button lock option. Submit button becomes active once Turnstile verification is successful
+Fix: Builder Tricks, Code Mirror 6 compatibility
+Fix: Orbiting Icons, add missing control conditions
+Fix: WebGL Fluid, fix fluid rendering when used with FX layers Fractal Glass
 
 = 1.6.0 =
 * New: Cloudflare Turnstile for Breakdance Forms

@@ -2,7 +2,7 @@
 /**
  * @package     ElementsHiveForBreakdance
  * @author      Elements Hive
- * @copyright   2025 RELYzIT SRL
+ * @copyright   2026 RELYzIT SRL
  * @license     GPLv3+
  *
  * @wordpress-plugin
@@ -14,7 +14,7 @@
  * License: GPLv3+
  * Text Domain: elementshive
  * Domain Path: /languages/
- * Version: 1.6.0
+ * Version: 1.7.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

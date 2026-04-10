@@ -49,25 +49,30 @@ function addControls( $controls, $element ) {
 	}
 
 	/** Cloudflare Turnstile */
-	if ( get_option( 'eh_turnstile_breakdance_enabled' ) && 'yes' === get_option( 'eh_turnstile_verified' ) ) {
-
-		/** Breakdance Forms */
-		if ( 'EssentialElements\\FormBuilder' === $slug ||
-			'EssentialElements\\LoginForm' === $slug ||
-			'EssentialElements\\RegisterForm' === $slug ||
-			'EssentialElements\\ForgotPasswordForm' === $slug
-			) {
-
-			$controls['contentSections'][] = controlSection(
-				'cloudflare_turnstile',
-				'Cloudflare Turnstile',
-				[
-						...\ElementsHiveForBreakdance\Extensions\Forms\CloudflareTurnstile\controls(),
-					],
-				[ 'isExternal' => true ],
-				'popout'
-			);
-		}
+	if ( 'EssentialElements\\FormBuilder' === $slug ) {
+		$controls['contentSections'][] = controlSection(
+			'cloudflare_turnstile',
+			'Cloudflare Turnstile',
+			[
+				...\ElementsHiveForBreakdance\Extensions\Forms\CloudflareTurnstile\formbuilder_controls(),
+			],
+			[ 'isExternal' => true ],
+			'popout'
+		);
+	} elseif (
+		'EssentialElements\\LoginForm' === $slug ||
+		'EssentialElements\\RegisterForm' === $slug ||
+		'EssentialElements\\ForgotPasswordForm' === $slug
+	) {
+		$controls['contentSections'][] = controlSection(
+			'cloudflare_turnstile',
+			'Cloudflare Turnstile',
+			[
+				...\ElementsHiveForBreakdance\Extensions\Forms\CloudflareTurnstile\global_only_controls(),
+			],
+			[ 'isExternal' => true ],
+			'popout'
+		);
 	}
 
 	/** @var Control[] $controls */

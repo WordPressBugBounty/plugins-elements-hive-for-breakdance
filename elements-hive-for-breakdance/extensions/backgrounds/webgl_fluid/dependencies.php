@@ -39,7 +39,7 @@ function addDependencies( $deps ) {
 		'frontendCondition' => $conditionWithoutTouch,
 		'builderCondition' => $condition,
 		'scripts' => [
-			ELEMENTS_HIVE_DIR . 'extensions/backgrounds/webgl_fluid/assets/js/eh_webgl_fluid@1.1.0.min.js',
+			ELEMENTS_HIVE_DIR . 'extensions/backgrounds/webgl_fluid/assets/js/eh_webgl_fluid@1.2.0.min.js',
 		],
 	];
 	$deps[] = [
@@ -162,7 +162,7 @@ function addDependencies( $deps ) {
 					new EhWebglFluid(options);
 				}
 
-				const modulePath = '{{getElementsHivePluginUrl()}}extensions/backgrounds/webgl_fluid/assets/js/eh_webgl_fluid@1.1.0.min.js';
+				const modulePath = '{{getElementsHivePluginUrl()}}extensions/backgrounds/webgl_fluid/assets/js/eh_webgl_fluid@1.2.0.min.js';
 
 				await import(modulePath)
 				init()

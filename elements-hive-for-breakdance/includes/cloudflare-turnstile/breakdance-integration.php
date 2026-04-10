@@ -40,89 +40,240 @@ function add_turnstile_to_form( $form ) {
 	echo '</div>';
 
 	enqueue_scripts();
+	render_turnstile_form_script();
+}
 
-	// avaScript for form handling
+/**
+ * @return void
+ */
+function render_turnstile_form_script() {
+	static $rendered = false;
+
+	if ( $rendered ) {
+		return;
+	}
+
+	$rendered = true;
 	?>
 	<script>
-	document.addEventListener("DOMContentLoaded", function() {
-		// Initialize Turnstile form handling for multiple forms
-		initTurnstileFormHandling();
-	});
+	(function() {
+		const FORM_SELECTOR = 'form';
+		const WIDGET_SELECTOR = '.eh-bdform-turnstile-wrapper > .cf-turnstile';
+		const SUBMIT_SELECTOR = 'button[type="submit"]';
+		const MESSAGE_SELECTOR = '.eh-turnstile-message';
+		const FORM_INIT_FLAG = 'ehTurnstileInitialized';
 
-	function initTurnstileFormHandling() {
-		// Find all forms with Turnstile widgets
-		const turnstileWidgets = document.querySelectorAll('.eh-bdform-turnstile-wrapper > .cf-turnstile');
-		
-		turnstileWidgets.forEach(function(widget) {
-			
-			const formElement = widget.closest('form');
-			
-			if (formElement) {
-				setupFormHandling(formElement);
+		function getForms() {
+			return document.querySelectorAll(FORM_SELECTOR);
+		}
+
+		function getWidget(form) {
+			return form.querySelector(WIDGET_SELECTOR);
+		}
+
+		function getSubmitButtons(form) {
+			return form.querySelectorAll(SUBMIT_SELECTOR);
+		}
+
+		function getFormByWidgetId(widgetId) {
+			const widget = document.getElementById(widgetId);
+			return widget ? widget.closest('form') : null;
+		}
+
+		function shouldDisableSubmitUntilVerified(form) {
+			const widget = getWidget(form);
+			return !!(widget && widget.dataset.disableSubmitUntilVerified === 'true');
+		}
+
+		function getResponseInput(form) {
+			return form.querySelector('input[name="cf-turnstile-response"]');
+		}
+
+		function hasValidToken(form) {
+			const responseInput = getResponseInput(form);
+			return !!(responseInput && responseInput.value);
+		}
+
+		function clearTurnstileMessage(form) {
+			if (!form.parentElement) {
+				return;
 			}
-		});
-	}
 
-	function setupFormHandling(formElement) {
-
-		// Intercept form submission to validate Turnstile
-		formElement.addEventListener('submit', function(e) {
-
-			const turnstileElement = formElement.querySelector('.eh-bdform-turnstile-wrapper > .cf-turnstile');
-			
-			if(!turnstileElement) return;
-
-			
-			// Check if Turnstile has been completed
-			const turnstileResponse = turnstileElement.querySelector('input[name="cf-turnstile-response"]');
-			
-			if (!turnstileResponse || !turnstileResponse.value) {
-				e.preventDefault();
-				e.stopPropagation();
-				e.stopImmediatePropagation();
-				
-				// Show error message using Breakdance style
-				createTurnstileMessage(
-					formElement,
-					'<?php esc_html_e( 'Please complete the verification challenge.', 'elementshive' ); ?>',
-					'error'
-				);
-				
-				return false;
-
-			} else {
-				// Clear any existing Turnstile error messages for this form
-				var existingMessages = formElement.parentElement.querySelectorAll('.eh-turnstile-message');
-				existingMessages.forEach(function(msg) {
-					msg.remove();
-				});
-				
-			}
-			
-		}, true); // Use capture phase to ensure this runs first
-	}
-
-	// Helper function to create Breakdance-style message
-	function createTurnstileMessage(form, text, type) {
-			type = type || 'error';
-			
-			// Remove any existing Turnstile messages for this form
-			var existingMessages = form.parentElement.querySelectorAll('.eh-turnstile-message');
-			existingMessages.forEach(function(msg) {
-				msg.remove();
+			form.parentElement.querySelectorAll(MESSAGE_SELECTOR).forEach(function(message) {
+				message.remove();
 			});
-			
-			var node = document.createElement('div');
+		}
+
+		function setSubmitState(form, enabled) {
+			getSubmitButtons(form).forEach(function(button) {
+				button.disabled = !enabled;
+				button.setAttribute('aria-disabled', enabled ? 'false' : 'true');
+				button.classList.toggle('eh-turnstile-submit-disabled', !enabled);
+			});
+		}
+
+		function syncFormState(form) {
+			if (!getWidget(form)) {
+				return;
+			}
+
+			if (!shouldDisableSubmitUntilVerified(form)) {
+				setSubmitState(form, true);
+				return;
+			}
+
+			setSubmitState(form, hasValidToken(form));
+		}
+
+		function syncAllForms() {
+			getForms().forEach(function(form) {
+				syncFormState(form);
+			});
+		}
+
+		function createTurnstileMessage(form, text, type) {
+			type = type || 'error';
+
+			if (!form.parentElement) {
+				return;
+			}
+
+			clearTurnstileMessage(form);
+
+			const node = document.createElement('div');
 			node.innerHTML = text;
 			node.classList.add('breakdance-form-message');
 			node.classList.add('breakdance-form-message--' + type);
 			node.classList.add('eh-turnstile-message');
-			
+
 			form.parentElement.insertBefore(node, form.nextSibling);
-			
-			// Scroll to message
 			node.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 		}
+
+		function getTurnstileErrorReason(errorCode) {
+			if (!errorCode) {
+				return '';
+			}
+
+			const normalizedErrorCode = String(errorCode);
+			const errorReasons = {
+				'110100': '<?php echo esc_js( __( 'Invalid sitekey', 'elementshive' ) ); ?>',
+				'110110': '<?php echo esc_js( __( 'Sitekey not found', 'elementshive' ) ); ?>',
+				'110200': '<?php echo esc_js( __( 'Domain not authorized', 'elementshive' ) ); ?>',
+				'110600': '<?php echo esc_js( __( 'Challenge timed out', 'elementshive' ) ); ?>',
+				'110620': '<?php echo esc_js( __( 'Interaction timed out', 'elementshive' ) ); ?>',
+				'200100': '<?php echo esc_js( __( 'Clock or cache problem', 'elementshive' ) ); ?>',
+				'200500': '<?php echo esc_js( __( 'Iframe load error', 'elementshive' ) ); ?>',
+				'300*': '<?php echo esc_js( __( 'Generic challenge failure', 'elementshive' ) ); ?>',
+				'400020': '<?php echo esc_js( __( 'Invalid sitekey', 'elementshive' ) ); ?>',
+				'400070': '<?php echo esc_js( __( 'Sitekey disabled', 'elementshive' ) ); ?>',
+				'600*': '<?php echo esc_js( __( 'Generic challenge failure', 'elementshive' ) ); ?>'
+			};
+
+			if (errorReasons[normalizedErrorCode]) {
+				return errorReasons[normalizedErrorCode];
+			}
+
+			const wildcardCode = Object.keys(errorReasons).find(function(pattern) {
+				const regexPattern = '^' + pattern.replace(/\*/g, '\\d+') + '$';
+				return new RegExp(regexPattern).test(normalizedErrorCode);
+			});
+
+			return wildcardCode ? errorReasons[wildcardCode] : '';
+		}
+
+		function setupFormHandling(form) {
+			if (!getWidget(form) || form.dataset[FORM_INIT_FLAG] === 'true') {
+				return;
+			}
+
+			form.dataset[FORM_INIT_FLAG] = 'true';
+			syncFormState(form);
+
+			form.addEventListener('submit', function(event) {
+				if (hasValidToken(form)) {
+					clearTurnstileMessage(form);
+					return;
+				}
+
+				event.preventDefault();
+				event.stopPropagation();
+				event.stopImmediatePropagation();
+				syncFormState(form);
+				createTurnstileMessage(
+					form,
+					'<?php esc_html_e( 'Please complete the verification challenge.', 'elementshive' ); ?>',
+					'error'
+				);
+				return false;
+			}, true);
+		}
+
+		function initTurnstileFormHandling() {
+			document.querySelectorAll(WIDGET_SELECTOR).forEach(function(widget) {
+				const form = widget.closest('form');
+				if (form) {
+					setupFormHandling(form);
+				}
+			});
+
+			syncAllForms();
+		}
+
+		function queueSyncAllForms() {
+			window.setTimeout(syncAllForms, 0);
+		}
+
+		function queueSyncFormByWidgetId(widgetId) {
+			window.setTimeout(function() {
+				const form = getFormByWidgetId(widgetId);
+				if (form) {
+					syncFormState(form);
+				}
+			}, 0);
+		}
+
+		window.ehTurnstileHandleSuccessForWidget = function(widgetId) {
+			const form = getFormByWidgetId(widgetId);
+			if (form) {
+				clearTurnstileMessage(form);
+			}
+			queueSyncFormByWidgetId(widgetId);
+		};
+
+		window.ehTurnstileHandleStateChangeForWidget = function(widgetId) {
+			queueSyncFormByWidgetId(widgetId);
+		};
+
+		window.ehTurnstileHandleErrorForWidget = function(widgetId, errorCode) {
+			const form = getFormByWidgetId(widgetId);
+			if (!form) {
+				return;
+			}
+
+			const normalizedErrorCode = errorCode ? String(errorCode) : '<?php echo esc_js( __( 'unknown', 'elementshive' ) ); ?>';
+			const reason = getTurnstileErrorReason(normalizedErrorCode) || '<?php echo esc_js( __( 'Unknown client-side error', 'elementshive' ) ); ?>';
+			const message = 'Cloudflare Turnstile Error (' + normalizedErrorCode + ') -- ' + reason;
+
+			queueSyncFormByWidgetId(widgetId);
+			createTurnstileMessage(form, message, 'error');
+		};
+
+		window.ehTurnstileHandleSuccess = queueSyncAllForms;
+		window.ehTurnstileHandleStateChange = queueSyncAllForms;
+		window.initTurnstileFormHandling = initTurnstileFormHandling;
+
+		document.addEventListener('DOMContentLoaded', initTurnstileFormHandling);
+
+		const observer = new MutationObserver(function() {
+			initTurnstileFormHandling();
+		});
+
+		observer.observe(document.documentElement, {
+			childList: true,
+			subtree: true,
+		});
+	})();
 	</script>
 	<?php
 }
@@ -156,10 +307,21 @@ function init_validation() {
 }
 
 /**
- * Intercept Breakdance AJAX form submission to validate turnstile
- *
- * @return void
+ * @return array|null
  */
+function get_submitted_breakdance_form() {
+	$post_id = isset( $_POST['post_id'] ) ? absint( wp_unslash( $_POST['post_id'] ) ) : 0;
+	$form_id = isset( $_POST['form_id'] ) ? absint( wp_unslash( $_POST['form_id'] ) ) : 0;
+
+	if ( ! $post_id || ! $form_id || ! function_exists( '\\Breakdance\\Forms\\getFormSettings' ) ) {
+		return null;
+	}
+
+	$settings = \Breakdance\Forms\getFormSettings( $post_id, $form_id );
+
+	return is_array( $settings ) ? $settings : null;
+}
+
 /**
  * Intercept Breakdance AJAX form submission to validate turnstile
  *
@@ -167,12 +329,20 @@ function init_validation() {
  */
 function validate_turnstile() {
 
-	// Do we have a turnstile response?
 	if ( ! isset( $_POST['cf-turnstile-response'] ) ) {
 		return;
 	}
 
-	// Validate turnstile response
+	$form = get_submitted_breakdance_form();
+
+	if ( $form ) {
+		if ( ! should_validate_form( $form ) ) {
+			return;
+		}
+	} elseif ( ! get_option( 'eh_turnstile_breakdance_enabled' ) || 'yes' !== get_option( 'eh_turnstile_verified' ) ) {
+		return;
+	}
+
 	if ( empty( $_POST['cf-turnstile-response'] ) ) {
 		wp_send_json_error([
 			'type' => 'error',
@@ -182,7 +352,7 @@ function validate_turnstile() {
 	}
 
 	$token = sanitize_text_field( wp_unslash( $_POST['cf-turnstile-response'] ) );
-	$result = verify_token( $token );
+	$result = verify_token( $token, get_turnstile_secret_key( $form ) );
 
 	if ( ! $result['success'] ) {
 		$error_message = $result['error'] ? get_error_message( $result['error'] ) : get_error_message( 'invalid_response' );
@@ -201,19 +371,21 @@ function validate_turnstile() {
  * @return bool
  */
 function should_show_turnstile( $form ) {
+	$settings = get_turnstile_settings( $form );
 
-	// Check if Breakdance forms are enabled and turnstile is verified in global settings
-	if ( ! get_option( 'eh_turnstile_breakdance_enabled' ) || 'no' === get_option( 'eh_turnstile_verified' ) ) {
+	if ( true !== ( $settings['enable_turnstile'] ?? false ) ) {
 		return false;
 	}
 
-	// Check form settings
-	if ( true === $form['cloudflare_turnstile']['enable_turnstile'] ) {
-
-		return true;
+	if ( should_use_custom_turnstile_keys( $form ) ) {
+		return '' !== get_turnstile_site_key( $form );
 	}
 
-	return false;
+	if ( ! get_option( 'eh_turnstile_breakdance_enabled' ) || 'yes' !== get_option( 'eh_turnstile_verified' ) ) {
+		return false;
+	}
+
+	return '' !== get_turnstile_site_key();
 }
 
 /**
@@ -223,17 +395,19 @@ function should_show_turnstile( $form ) {
  * @return bool
  */
 function should_validate_form( $form ) {
+	$settings = get_turnstile_settings( $form );
 
-	// Check if Breakdance forms are enabled in settings
-	if ( ! get_option( 'eh_turnstile_breakdance_enabled' ) || 'no' === get_option( 'eh_turnstile_verified' ) ) {
-
+	if ( true !== ( $settings['enable_turnstile'] ?? false ) ) {
 		return false;
 	}
 
-	if ( true === $form['cloudflare_turnstile']['enable_turnstile'] ) {
-
-		return true;
+	if ( should_use_custom_turnstile_keys( $form ) ) {
+		return '' !== get_turnstile_secret_key( $form );
 	}
 
-	return false;
+	if ( ! get_option( 'eh_turnstile_breakdance_enabled' ) || 'yes' !== get_option( 'eh_turnstile_verified' ) ) {
+		return false;
+	}
+
+	return '' !== get_turnstile_secret_key();
 }
