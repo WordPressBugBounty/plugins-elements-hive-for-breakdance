@@ -14,7 +14,7 @@
  * License: GPLv3+
  * Text Domain: elementshive
  * Domain Path: /languages/
- * Version: 1.7.1
+ * Version: 1.7.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

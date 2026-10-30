@@ -1,8 +1,8 @@
 === Elements Hive for Breakdance ===
 Contributors: elementshive
 Tags: breakdance, webgl, threejs, interaction, animation
-Tested up to: 6.9.4
-Stable tag: 1.7.1
+Tested up to: 7.1.4
+Stable tag: 1.7.2
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -115,6 +115,9 @@ of each extension contains information about the supported elements and where to
 == Changelog ==
 
 **Changelog**
+
+= 1.7.2 =
+Chore: Breakdance 3 compatibility fixes
 
 = 1.7.1 =
 Fix: WebGl Fluid, update dependecy call

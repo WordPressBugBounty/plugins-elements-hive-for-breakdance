@@ -17,9 +17,9 @@ function enqueue_builder_tricks_scripts() {
 
 	wp_enqueue_script(
 		'eh-builder-tricks-js',
-		ELEMENTS_HIVE_ASSETS_DIR . 'builder/builder-tricks/eh_builder_tricks@1.1.0.min.js',
+		ELEMENTS_HIVE_ASSETS_DIR . 'builder/builder-tricks/eh_builder_tricks@1.1.3.min.js',
 		[],
-		'1.1',
+		'1.1.3',
 		true
 	);
 }

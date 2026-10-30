@@ -44,7 +44,7 @@ function addStyles( $css_template ) {
                     height: 100%;
                 }
 
-                .breakdance .bde-section .section-container {
+                .bde-section .section-container {
                     z-index: 2;
                 }
             {% endif %}
